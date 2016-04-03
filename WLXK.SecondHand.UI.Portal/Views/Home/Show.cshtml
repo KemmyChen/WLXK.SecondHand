@@ -1,0 +1,114 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>失物招领--青岛职业技术学院</title>
+
+    <!-- Bootstrap -->
+    <link href="/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style type="text/css">
+        body {
+            padding-bottom: 70px;
+        }
+
+        a:link, a:hover, a:visited {
+            color: #337AB7;
+        }
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <nav class="navbar navbar-default" style="margin-bottom:5px;">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/Home/Get">失物招领</a>
+            </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+    <ol class="breadcrumb" style="background:#FFF;">
+        <li><a href="/Home/Index">青职二货街</a></li>
+        <li><a href="/Home/Get">失物招领</a></li>
+        <li class="active">详情</li>
+    </ol>
+    <div class="container">
+        <div class="row col-lg-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-offset-1">
+            <div class="form-group text-center ">
+                <h3>@ViewData["title"] </h3>
+            </div>
+
+            @{WLXK.SecondHand.Model.ShiWu sale = ViewData["sale"] as WLXK.SecondHand.Model.ShiWu;}
+            @{
+                <div class="form-group">
+                    <label for="txtName">物品种类</label>
+                    <p class="info">@sale.ThingName</p>
+                </div>
+                <div class="form-group">
+                    <label for="txtAddress">地点</label>
+                    <p>@sale.Address</p>
+                </div>
+                <div class="form-group">
+                    <label for="datetime">时间</label>
+                    <p>@sale.Time</p>
+                </div>
+                <div class="form-group">
+                    <label for="txtphonenum">联系方式</label>
+                    <p>@sale.PhoneNum</p>
+                </div>
+                <div class="form-group">
+                    <label for="txtDescption">详细信息</label>
+                    <p>@sale.Descript</p>
+                </div>
+            }
+        </div>
+        <div class="row" style="margin-top: 20px; padding-top: 15px; text-align: center; border-top: 1px solid #DDDDDD;">
+            <div class="col-lg-8 col-lg-offset-2">
+                Copyright©2015  <a href="http://www.qingzhi2shou.com">青职二货街</a>研发小组 版权所有
+                <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1255314121'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255314121%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="row" style="text-align:center">
+                <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                    <a class="navbar-brand" href="/Home/Get">
+                        <span class="glyphicon glyphicon-backward"></span>
+                        <span style="font-size:12px;">返回</span>
+                    </a>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                    <a class="navbar-brand" href="/Home/AddSales/1">
+                        <span class="glyphicon glyphicon-cloud-download"></span>
+                        <span style="font-size:12px;">招领</span>
+                    </a>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                    <a class="navbar-brand" href="/Home/AddSales/0">
+                        <span class="glyphicon glyphicon-cloud-upload"></span>
+                        <span style="font-size:12px;">寻物</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"> </script>
+    <!-- Include all compiled plugins (below), or include individual filkes as needed -->
+    <script src="/Content/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

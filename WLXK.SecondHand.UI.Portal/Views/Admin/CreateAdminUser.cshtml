@@ -1,0 +1,51 @@
+﻿@model WLXK.SecondHand.Model.AdminUser
+
+@{
+    ViewBag.Title = "天价管理员账户";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+@section Header{
+
+}
+
+<h2>创建用户</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>管理员添加</legend>
+
+        <div class="editor-label">
+            用户名
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Uid)
+            @Html.ValidationMessageFor(model => model.Uid)
+        </div>
+
+        <div class="editor-label">
+            密码
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pwd)
+            @Html.ValidationMessageFor(model => model.Pwd)
+        </div>
+        <div class="editor-label">
+            邮箱
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />@ViewData["message"]
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("返回管理员列表", "AdminUserlist")
+</div>

@@ -1,0 +1,43 @@
+﻿@model WLXK.SecondHand.Model.FriendLink
+
+@{
+    ViewBag.Title = "添加友情链接";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+@section Header{
+
+}
+<h2>添加友情链接</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>友情链接</legend>
+
+        <div class="editor-label">
+            关键词
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.KeyWords)
+            @Html.ValidationMessageFor(model => model.KeyWords)
+        </div>
+
+        <div class="editor-label">
+            链接
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LinkTo)
+            @Html.ValidationMessageFor(model => model.LinkTo)
+        </div>
+
+        <p>
+            <input type="submit" value="添加" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("返回", "FriendLink")
+</div>

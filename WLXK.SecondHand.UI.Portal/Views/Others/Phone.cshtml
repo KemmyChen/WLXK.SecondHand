@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "青职二货街-手机版";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+@section Header{
+    <link href="/Content/css/Others/Phone.css" rel="stylesheet" />
+}
+<div class="title">
+    <div class="title_all">
+        <div class="title_font">
+            <ul style=" margin-left:70px;">
+                <a href="/Others/Phone"><li class="title-ft">手机版</li></a>
+                <a href="/Others/SubMit"><li class="title-ft">在线客服</li></a>
+                <a href="/Others/Suggest"><li class="title-ft">意见反馈</li></a>
+                <a href="/home/Index"><li class="title-ft">返回首页</li></a>
+            </ul>
+        </div>
+    </div>
+    <div class="bd">
+        <div class="bd-mid">
+            <div class="bd-mid-photo">
+                <img src="/Content/images/phoneqz.png" style="height:200px; margin-left:50px;" />
+            </div>
+            <div class="bd-mid-font-a"> 手机访问地址</div>
+            <div class="bd-mid-font-b">@WLXK.SecondHand.Common.CommonHelper.GetWebSite()</div>
+            <div class="bd-mid-font-a" style="margin-top:5px;">扫描二维码尽情使用吧</div>
+        </div>
+        <div class="bd-mid-font-botton">
+            <div class="bd-mid-font-botton-bt">
+                <a href="http://v.t.sina.com.cn/share/share.php?title=青职二货街，青职人自己的网上交易平台，为您提供最优质的服务。&url=@WLXK.SecondHand.Common.CommonHelper.GetWebSite()"><input type="submit" value="分享到新浪微博" class="bd-mid-font-botton-btton" /></a><span class="bd-mid-font-botton-last">快告诉你的好友吧</span>
+            </div>
+            <div class="bd-mid-font-botton-bt">
+                <a href="#"><input type="submit" value="加入书签更方便" class="bd-mid-font-botton-btton" /></a><span class="bd-mid-font-botton-last">存为手机书签，下次访问更方便</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+

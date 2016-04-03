@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "青职二货街";
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+}
+@section Header{
+    <script src="/Scripts/jquery-1.8.2.js"></script>
+    <link href="/Content/css/Others/error.css" rel="stylesheet" />
+    <script src="/Scripts/others/error.js"></script>
+}
+<div id="error">
+    <div id="error_bd">
+        <div id="errorimg">
+            <img src="/Content/images/error1.jpg" />
+        </div>
+        <div id="tishi">
+            <span id="errormsg">小二偷了会懒，请稍等...</span>
+            <span id="ninkeyi">您可以:</span>
+            <ol id="errorhelp">
+                <li><a href="javascript:history.go(-1)">后退</a> 检查刚才的输入</li>
+                <li>到 <a href="/Others/SubMit">客服中心</a> 寻求帮助</li>
+                <li>进入 <a href="dianpu">高级店铺搜索</a> 查找店铺</li>
+                <li><span id="second">5</span> 秒后跳转至 <a id="linkto" href="/home/index">青职二货街 首页</a>，那里有千万买家寻找的好宝贝</li>
+            </ol>
+        </div>
+    </div>
+</div>

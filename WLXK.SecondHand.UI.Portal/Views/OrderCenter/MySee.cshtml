@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "我的足迹";
+    Layout = "~/Views/Shared/order/_LayoutOrderHome.cshtml";
+}
+@section Header{
+    <link href="/Content/css/nav.css" rel="stylesheet" />
+    <link href="/Content/css/OrderCenter/MySee.css" rel="stylesheet" />
+}
+
+@{List<WLXK.SecondHand.Model.MySee> list = ViewData["mysee"] as List<WLXK.SecondHand.Model.MySee>;}
+@if (list.Count() > 0)
+{
+    foreach (var item in list)
+    {
+        <div class="list">
+            <div class="sh_all">
+                <div class="sh_img">
+                    <a href="/Home/ShowGoods/@item.Goods.Id"><img src="@item.Goods.SmallImageAddress" height="150" width="150" /></a>
+                </div>
+                <div class="sh_foot">
+                    <div class="sh_a">
+                        <a href="/Home/ShowGoods/@item.Id">
+                            @if (item.Goods.Title.Length > 8)
+                            {
+                                @item.Goods.Title.Substring(0, 8)<span>...</span>
+                            }
+                            else
+                            {
+                                @item.Goods.Title
+                            }
+                        </a>
+                    </div>
+                    <div class="sh_jiage">
+                        约 <span class="price_sign">￥</span>
+                        <span class="price_sign">@item.Goods.Price</span>
+                        <span class="price_count">
+                            浏览量：<span>@item.Goods.SeeCount</span>
+                        </span>
+                    </div>
+                    <div class="seeTime">@item.SubTime.ToString("yyyy-MM-dd HH:mm") 浏览</div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div style="height:500px;width:700px;">
+        <font color="red">您还未浏览任何内容</font>
+    </div>
+}
+<div class="paginator" style="display:block;clear:both;">
+    @{int pageindex = int.Parse(ViewData["pageIndex"].ToString());
+    int count = int.Parse(ViewData["Count"].ToString());
+    }
+    @Html.ShowPageNavigate(pageindex, 9, count)
+</div>

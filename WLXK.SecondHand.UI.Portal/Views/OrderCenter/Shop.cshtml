@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "我的收藏夹";
+    Layout = "~/Views/Shared/order/_LayoutOrderHome.cshtml";
+}
+@section Header{
+    <link href="/Content/css/nav.css" rel="stylesheet" />
+    <link href="/Content/css/ShowMyGoods.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.8.2.js"></script>
+    <script src="/Scripts/OrderCenter/Shop.js"></script>
+
+
+}
+<ul id="list_hd">
+    <li id="xinxi">商品信息</li>
+    <li id="danjia">单价</li>
+    <li id="shuliang">数量</li>
+    <li>操作</li>
+</ul>
+
+@{  var list = ViewData["allGoods"] as List<WLXK.SecondHand.UI.Portal.Common.Shops>;}
+@{
+    if (list.Count() <= 0)
+    {
+        <div style="width:700px;height:300px;color:red;font-size:14px;clear:both;text-align:center;line-height:300px;">您还没有添加商品到收藏夹哦！赶快添加吧！</div>
+    }
+    else
+    {
+        foreach (WLXK.SecondHand.UI.Portal.Common.Shops shop in list)
+        {
+
+            <div class="good_list">
+                <div class="goods">
+                    <div style="float:left;"><a href="/Home/ShowGoods/@shop.Goods.Id"><img width="85" height="85" src="@shop.Goods.SmallImageAddress" /></a></div>
+                    <span class="good_title">
+                        <a href="/Home/ShowGoods/@shop.Goods.Id">
+                        @if(shop.Goods.Title.Length>19)
+                        {
+                            @shop.Goods.Title.Substring(0,19)<span>...</span>
+                        }
+                        else
+                        {
+                            @shop.Goods.Title
+                        }</a>
+                    </span>
+                    <span class="good_danjia">@shop.Goods.Price</span>
+                    <span class="good_shuliang">@shop.Goods.Count</span>
+                    <span class="good_caozuo"><a class="delete" ids="@shop.ShopId" href="">删除</a></span>
+                </div>
+            </div>
+        }
+    }
+}
+
+
+@{int pageindex = int.Parse(ViewData["pageIndex"].ToString());
+int count = int.Parse(ViewData["Count"].ToString());
+}
+<input type="hidden" id="pageindex" value="@pageindex" />
+
+<div class="paginator" style="margin-top:50px;">
+    @Html.ShowPageNavigate(pageindex, 5, count, "all")
+</div>
+
+<div style="height:50px;"></div>
+
+

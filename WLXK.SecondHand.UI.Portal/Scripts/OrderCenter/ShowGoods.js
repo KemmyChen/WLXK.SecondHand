@@ -1,0 +1,1 @@
+﻿$(function () { $(".delete").click(function () { var id = $(this).attr("ids"); if (confirm("确认要删除本条商品吗？")) { $.post("/OrderCenter/DeleteGoods", { id: id }, function (data) { if (data == "ok") { window.location.href = '/OrderCenter/ShowGoods?pageindex=' + $("#pageindex").val() } else { alert("data") } }) } }) })

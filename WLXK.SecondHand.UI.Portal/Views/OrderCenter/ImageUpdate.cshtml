@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "头像管理";
+    Layout = "~/Views/Shared/order/_LayoutSetting.cshtml";
+}
+@section Header{
+    <script src="/Scripts/jquery-1.8.2.js"></script>
+    <link href="/Content/css/OrderCenter/ImageUpdate.css" rel="stylesheet" />
+    <script src="/Scripts/OrderCenter/ImageUpdate.js"></script>
+    <script src="/Scripts/ajaxfileupload.js"></script>
+
+
+}
+@{WLXK.SecondHand.Model.UserInfoExt ext = ViewData["userext"] as WLXK.SecondHand.Model.UserInfoExt;}
+<span class="error">@ViewData["msg"]</span>
+<form action="/OrderCenter/ImageUpdate" method="post" id="form1">
+    <div id="area">
+        <div id="move">
+            <!--上部边线，加背景图片实现效果-->
+            <!--设置边框-->
+            <div id="infor">
+                <!--边框到内容的距离-->
+                <div id="space">
+                </div>
+                <!--内容只  有下边框-->
+                <div id="user">
+                    设置头像
+                </div>
+                <div id="set1">
+                    当前我的头像
+                </div>
+                <div id="set2">
+                    如果您还没有设置自己的头像，系统会给您设置默认头像，您需要上传一张新照片来做您的头像
+                </div>
+                <div id="set3">
+                    <img id="MyImage" width="100" height="100" src="@ext.TouXiang" style="border-radius:100px;" />
+                    <input type="hidden" name="Id" value="@ext.Id" />
+                </div>
+                <div id="set4">
+                    设置我的新头像
+                </div>
+                <div id="set5">
+                    请选择一张照片进行上传编辑
+                </div>
+                <div id="set6">
+                    头像保存后，您可能需要刷新本页面（F5），才能查看最新的头像效果
+                </div>
+                <div id="set7">
+                    <input type="file" name="images" id="img_file" onchange="uploadimg()" />(图片大小不要大于500kb哦)<br />
+                    <img border="0" id="imsges_my" src="" alt="" width="200" /><br />
+                    <input class="btnfabu" type="submit" value="修改头像" style="margin-top:20px;margin-left:20px;" />
+                    <input type="hidden" name="TouXiang" value="" id="touxiang" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

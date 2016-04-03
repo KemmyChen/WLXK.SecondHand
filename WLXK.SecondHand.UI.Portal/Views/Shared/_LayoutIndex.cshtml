@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link href="/Content/css/Common.css" rel="stylesheet" />
+    <link href="/Content/css/masterIndex.css" rel="stylesheet" />
+    <meta content="width=device-width,user-scalable=no" name="viewport">
+    <title>@ViewBag.Title</title>
+    @RenderSection("Header")
+    <style type="text/css">
+        img {
+            border: 0;
+        }
+
+        .lianjie li {
+            float: left;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body style="margin: 0px auto; min-width: 780px; max-width: 1380px; ">
+    <div id="tools">
+        <div id="welcome">
+            <span id="nickname">
+                @if (Session["model"] == null)
+                {
+                    <span>欢迎光临青职二货街，请<a href="/Account/login" id="login">登录</a><a href="/account/register">免费注册</a></span>
+                }
+                else
+                {
+                    WLXK.SecondHand.Model.UserInfo user = (WLXK.SecondHand.Model.UserInfo)Session["model"];
+                    <span>
+                        欢迎您！ <a href="/OrderCenter/Home">
+                            @if (user.Uid.Length >= 8)
+                            {
+                                @user.Uid.Substring(0, 8)<span>...</span>
+                            }
+                            else
+                            {
+                                @user.Uid
+                            }
+                        </a>
+                    </span>
+                    <span><a href="/Others/SignOut">退出</a></span>
+                }
+            </span>
+        </div>
+        <ul id="operate">
+            <li><a href="/OrderCenter/Home">我的小二</a></li>
+            <li><a href="/OrderCenter/shop">收藏夹<span id="count">0</span></a></li>
+            <li><a href="/Others/Phone">手机版</a></li>
+            <li><a href="/OrderCenter/MyInfoUp">账户设置</a></li>
+            <li><a href="/OrderCenter/OpenShop">卖家中心</a></li>
+            <li><a href="/Others/SubMit">客户服务</a></li>
+            <li><a href="/Others/Suggest">意见反馈</a></li>
+            <li><a href="/Others/AboutUs" id="webnav">关于我们</a></li>
+        </ul>
+    </div>
+    @RenderBody()
+    
+    <div style="width:1200px;margin-top:30px;width:1200px;margin:30px auto;clear:both"></div>
+    <div id="foot" style="clear:both;margin-top:50px;">
+        <div class="up">
+            地址：山东省青岛市黄岛区钱塘江路369号比邻楼东二室  邮箱：admin@qingzhi2shou.com  邮编：266555
+        </div>
+
+        <div class="up">
+            <span>
+                Copyright©2015  <a href="http://www.qingzhi2shou.com">青职二货街</a>研发小组 版权所有
+                <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1255314121'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255314121%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+            </span>
+        </div>
+    </div>
+</body>
+</html>

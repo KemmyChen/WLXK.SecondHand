@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "青职二货街-客服中心";
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+}
+@section Header{
+    <link href="/Content/css/Others/SubMit.css" rel="stylesheet" />
+}
+@{string qq = ViewData["qq"].ToString();}
+<div id="bd_kefu">
+    <div id="top">
+        <h3 style="display:inline;">在线客服</h3>
+        <span>（该服务需要通过QQ进行沟通，请确认启动QQ。）</span>
+    </div>
+    <div id="bd_bd">
+        <div class="kefu">
+            <div class="kefu_left">
+                <img src="/Content/images/kefu/account.png" />
+            </div>
+            <div class="kefu_right">
+                <h3>账号问题</h3>
+                <span class="tishi">解答帐号出现的相关问题</span>
+                <a href="tencent://message/?uin=@qq&Site=青职二货街客服&Menu=yes" target="_blank" class="button">在线咨询</a>
+            </div>
+        </div>
+        <div class="kefu">
+            <div class="kefu_left">
+                <img src="/Content/images/kefu/account.png" />
+            </div>
+            <div class="kefu_right">
+                <h3>开店铺问题</h3>
+                <span class="tishi">解答开店铺相关的问题</span>
+                <a href="tencent://message/?uin=@qq&Site=青职二货街客服&Menu=yes" target="_blank" class="button">在线咨询</a>
+            </div>
+        </div>
+        <div class="kefu">
+            <div class="kefu_left">
+                <img src="/Content/images/kefu/account.png" />
+            </div>
+            <div class="kefu_right">
+                <h3>商品问题</h3>
+                <span class="tishi">解答出售的商品出现的问题</span>
+                <a href="tencent://message/?uin=@qq&Site=青职二货街客服&Menu=yes" target="_blank" class="button">在线咨询</a>
+            </div>
+        </div>
+    </div>
+</div>

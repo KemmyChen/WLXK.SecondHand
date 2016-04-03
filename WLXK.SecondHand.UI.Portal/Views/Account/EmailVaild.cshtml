@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "绑定邮箱|青职二货街";
+    Layout = "/Views/Shared/_LayoutAccount.cshtml";
+}
+@section Header{
+    <link href="/Content/css/Account/EmailVaild.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.8.2.js"></script>
+    <script src="/Scripts/Account/EmailVaild.js"></script>
+}
+@section BigTitle{
+    安全中心
+}
+@section SmallTitle{
+    绑定邮箱
+}
+<div id="true">
+    <img src="/Content/images/201105181724562018118.gif" height="100" />
+</div>
+<input id="status" type="hidden" name="state" value="@ViewData["state"]" />
+<div id="right">
+    <span id="green"><span id="uid">@ViewData["Uid"]</span>您好！<span id="fasongzhong">验证邮件已发送至</span><span id="myemail">@ViewData["myemail"]</span>！</span>
+    @*<span id="msg">（请立即完成验证，邮箱验证不通过则修改邮箱失败）</span>*@
+    <span id="msg2">验证邮件24小时内有效，请尽快登录您的邮箱点击验证链接完成验证。</span>
+    <span id="youxiang"><a id="aemail" href="@ViewData["email"]" target="_blank">登录邮箱</a></span>
+    <span id="send">如果您未接收到邮件，请点击<input id="resend" type="button" value="重新发送" /></span>
+    <span id="tishi" style="font-weight:bold;">温馨提示：如果一直接收不到邮件，请访问邮箱垃圾箱</span>
+</div>
+<div id="reg_weixin">
+    <img border="0" src="/Content/images/ico_loading.gif" height="70" />
+</div>

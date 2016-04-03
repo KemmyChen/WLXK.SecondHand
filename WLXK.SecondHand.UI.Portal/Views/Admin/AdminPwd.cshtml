@@ -1,0 +1,28 @@
+﻿@model WLXK.SecondHand.Model.AdminUser
+
+@{
+    ViewBag.Title = "更改密码";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+@section Header{
+    
+    }
+
+<h2>更改密码</h2>
+<form action="/Admin/AdminPwd" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <input  type="hidden" name="Uid" value="@Model.Uid"/>
+    <table>
+        <tr>
+            <td>密码</td>
+            <td><input type="password" name="Pwd" /></td>
+        </tr>
+        <tr>
+            <td>邮箱</td>
+            <td><input type="text" name="Email" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="更新" /></td>
+        </tr>
+    </table>
+</form>

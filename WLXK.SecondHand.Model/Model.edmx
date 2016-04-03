@@ -1,0 +1,771 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="qtcSecondHandModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="qtcSecondHandModelStoreContainer">
+    <EntitySet Name="UserInfo" EntityType="qtcSecondHandModel.Store.UserInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Goods" EntityType="qtcSecondHandModel.Store.Goods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SaleInfo" EntityType="qtcSecondHandModel.Store.SaleInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Shoping" EntityType="qtcSecondHandModel.Store.Shoping" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserInfoExt" EntityType="qtcSecondHandModel.Store.UserInfoExt" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MySee" EntityType="qtcSecondHandModel.Store.MySee" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Suggest" EntityType="qtcSecondHandModel.Store.Suggest" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ListShops" EntityType="qtcSecondHandModel.Store.ListShops" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MyNews" EntityType="qtcSecondHandModel.Store.MyNews" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AdminUser" EntityType="qtcSecondHandModel.Store.AdminUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ShiWu" EntityType="qtcSecondHandModel.Store.ShiWu" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FriendLink" EntityType="qtcSecondHandModel.Store.FriendLink" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserInfoGoods" Association="qtcSecondHandModel.Store.UserInfoGoods">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="Goods" EntitySet="Goods" />
+    </AssociationSet>
+    <AssociationSet Name="GoodsSaleInfo" Association="qtcSecondHandModel.Store.GoodsSaleInfo">
+      <End Role="Goods" EntitySet="Goods" />
+      <End Role="SaleInfo" EntitySet="SaleInfo" />
+    </AssociationSet>
+    <AssociationSet Name="UserInfoShoping" Association="qtcSecondHandModel.Store.UserInfoShoping">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="Shoping" EntitySet="Shoping" />
+    </AssociationSet>
+    <AssociationSet Name="ShopingGoods" Association="qtcSecondHandModel.Store.ShopingGoods">
+      <End Role="Shoping" EntitySet="Shoping" />
+      <End Role="Goods" EntitySet="Goods" />
+    </AssociationSet>
+    <AssociationSet Name="UserInfoMySee" Association="qtcSecondHandModel.Store.UserInfoMySee">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="MySee" EntitySet="MySee" />
+    </AssociationSet>
+    <AssociationSet Name="GoodsMySee" Association="qtcSecondHandModel.Store.GoodsMySee">
+      <End Role="Goods" EntitySet="Goods" />
+      <End Role="MySee" EntitySet="MySee" />
+    </AssociationSet>
+    <AssociationSet Name="MyNewsUserInfo" Association="qtcSecondHandModel.Store.MyNewsUserInfo">
+      <End Role="MyNews" EntitySet="MyNews" />
+      <End Role="UserInfo" EntitySet="UserInfo" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Uid" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="Pwd" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="DelFalg" Type="smallint" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="IsValid" Type="smallint" Nullable="false" />
+    <Property Name="SendEmailTime" Type="datetime" Nullable="true" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+    <Property Name="EmailCode" Type="nvarchar" Nullable="true" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="Goods">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Type" Type="smallint" Nullable="false" />
+    <Property Name="MaiDian" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="LaiYuan" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="BigImageAddress" Type="nvarchar" Nullable="false" MaxLength="512" />
+    <Property Name="Descript" Type="nvarchar" Nullable="false" MaxLength="2048" />
+    <Property Name="DelGlag" Type="smallint" Nullable="false" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+    <Property Name="UserInfoId" Type="int" Nullable="false" />
+    <Property Name="SmallImageAddress" Type="nvarchar" Nullable="false" MaxLength="512" />
+    <Property Name="ShopingId" Type="int" Nullable="false" />
+    <Property Name="SeeCount" Type="int" Nullable="false" DefaultValue="0" />
+  </EntityType>
+  <EntityType Name="SaleInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RealName" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="QQ" Type="nvarchar" Nullable="false" MaxLength="32" />
+    <Property Name="PhoneNum" Type="nvarchar" Nullable="false" MaxLength="11" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GoodsId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Shoping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserInfoId" Type="int" Nullable="false" />
+    <Property Name="GoodsId" Type="int" Nullable="false" />
+    <Property Name="DelFlag" Type="smallint" Nullable="false" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInfoExt">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserInfoId" Type="int" Nullable="false" />
+    <Property Name="NickName" Type="nvarchar" Nullable="false" DefaultValue=" " MaxLength="32" />
+    <Property Name="RealName" Type="nvarchar" Nullable="true" MaxLength="32" />
+    <Property Name="Gender" Type="smallint" Nullable="false" />
+    <Property Name="Birthday" Type="datetime" Nullable="true" />
+    <Property Name="Address" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="TouXiang" Type="nvarchar" Nullable="true" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="MySee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserInfoId" Type="int" Nullable="false" />
+    <Property Name="GoodsId" Type="int" Nullable="false" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Suggest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Content" Type="nvarchar" Nullable="false" MaxLength="512" />
+    <Property Name="OpenSpeed" Type="smallint" Nullable="false" />
+    <Property Name="Beautiful" Type="smallint" Nullable="false" />
+    <Property Name="SettingType" Type="smallint" Nullable="false" />
+    <Property Name="Convenient" Type="smallint" Nullable="false" />
+    <Property Name="Vivid" Type="smallint" Nullable="false" />
+    <Property Name="AllPopulation" Type="smallint" Nullable="false" />
+    <Property Name="Aim" Type="smallint" Nullable="false" />
+    <Property Name="QQNum" Type="nvarchar" Nullable="true" MaxLength="16" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="64" />
+    <Property Name="PhoneNum" Type="nvarchar" Nullable="true" MaxLength="64" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ListShops">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+    <Property Name="UserInfoId" Type="int" Nullable="false" />
+    <Property Name="Status" Type="smallint" Nullable="false" />
+    <Property Name="RealName" Type="nvarchar" Nullable="false" MaxLength="32" />
+    <Property Name="IdCard" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="CardAddress" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="CalssName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsShenHe" Type="smallint" Nullable="false" DefaultValue="0" />
+    <Property Name="SheHeAdminId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MyNews">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="IsSee" Type="smallint" Nullable="false" />
+    <Property Name="UserInfoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AdminUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Uid" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Pwd" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="ShiWu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneNum" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ThingName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descript" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubTime" Type="datetime" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="smallint" Nullable="false" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FriendLink">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KeyWords" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LinkTo" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="UserInfoGoods">
+    <End Role="UserInfo" Type="qtcSecondHandModel.Store.UserInfo" Multiplicity="1" />
+    <End Role="Goods" Type="qtcSecondHandModel.Store.Goods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Goods">
+        <PropertyRef Name="UserInfoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GoodsSaleInfo">
+    <End Role="Goods" Type="qtcSecondHandModel.Store.Goods" Multiplicity="1" />
+    <End Role="SaleInfo" Type="qtcSecondHandModel.Store.SaleInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleInfo">
+        <PropertyRef Name="GoodsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserInfoShoping">
+    <End Role="UserInfo" Type="qtcSecondHandModel.Store.UserInfo" Multiplicity="1" />
+    <End Role="Shoping" Type="qtcSecondHandModel.Store.Shoping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Shoping">
+        <PropertyRef Name="UserInfoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ShopingGoods">
+    <End Role="Shoping" Type="qtcSecondHandModel.Store.Shoping" Multiplicity="*" />
+    <End Role="Goods" Type="qtcSecondHandModel.Store.Goods" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Shoping">
+        <PropertyRef Name="GoodsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserInfoMySee">
+    <End Role="UserInfo" Type="qtcSecondHandModel.Store.UserInfo" Multiplicity="1" />
+    <End Role="MySee" Type="qtcSecondHandModel.Store.MySee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MySee">
+        <PropertyRef Name="UserInfoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GoodsMySee">
+    <End Role="Goods" Type="qtcSecondHandModel.Store.Goods" Multiplicity="1" />
+    <End Role="MySee" Type="qtcSecondHandModel.Store.MySee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MySee">
+        <PropertyRef Name="GoodsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MyNewsUserInfo">
+    <End Role="MyNews" Type="qtcSecondHandModel.Store.MyNews" Multiplicity="*" />
+    <End Role="UserInfo" Type="qtcSecondHandModel.Store.UserInfo" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MyNews">
+        <PropertyRef Name="UserInfoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="qtcSecondHandModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Uid" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pwd" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DelFalg" Type="Int16" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsValid" Type="Int16" Nullable="false" />
+          <Property Name="SendEmailTime" Type="DateTime" Precision="3" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EmailCode" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Goods" Relationship="qtcSecondHandModel.UserInfoGoods" FromRole="UserInfo" ToRole="Goods" />
+          <NavigationProperty Name="Shoping" Relationship="qtcSecondHandModel.UserInfoShoping" FromRole="UserInfo" ToRole="Shoping" />
+          <NavigationProperty Name="MySee" Relationship="qtcSecondHandModel.UserInfoMySee" FromRole="UserInfo" ToRole="MySee" />
+          <NavigationProperty Name="MyNews" Relationship="qtcSecondHandModel.MyNewsUserInfo" FromRole="UserInfo" ToRole="MyNews" />
+        </EntityType>
+        <EntityContainer Name="qtcSecondHandEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
+          <EntitySet Name="Goods" EntityType="qtcSecondHandModel.Goods" />
+          <EntitySet Name="SaleInfo" EntityType="qtcSecondHandModel.SaleInfo" />
+          <AssociationSet Name="UserInfoGoods" Association="qtcSecondHandModel.UserInfoGoods">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="GoodsSaleInfo" Association="qtcSecondHandModel.GoodsSaleInfo">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="SaleInfo" EntitySet="SaleInfo" />
+          </AssociationSet>
+          <EntitySet Name="Shoping" EntityType="qtcSecondHandModel.Shoping" />
+          <AssociationSet Name="UserInfoShoping" Association="qtcSecondHandModel.UserInfoShoping">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="Shoping" EntitySet="Shoping" />
+          </AssociationSet>
+          <AssociationSet Name="ShopingGoods" Association="qtcSecondHandModel.ShopingGoods">
+            <End Role="Shoping" EntitySet="Shoping" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <EntitySet Name="UserInfoExt" EntityType="qtcSecondHandModel.UserInfoExt" />
+          <EntitySet Name="MySee" EntityType="qtcSecondHandModel.MySee" />
+          <AssociationSet Name="UserInfoMySee" Association="qtcSecondHandModel.UserInfoMySee">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="MySee" EntitySet="MySee" />
+          </AssociationSet>
+          <AssociationSet Name="GoodsMySee" Association="qtcSecondHandModel.GoodsMySee">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="MySee" EntitySet="MySee" />
+          </AssociationSet>
+          <EntitySet Name="Suggest" EntityType="qtcSecondHandModel.Suggest" />
+          <EntitySet Name="ListShops" EntityType="qtcSecondHandModel.ListShops" />
+          <EntitySet Name="MyNews" EntityType="qtcSecondHandModel.MyNews" />
+          <AssociationSet Name="MyNewsUserInfo" Association="qtcSecondHandModel.MyNewsUserInfo">
+            <End Role="MyNews" EntitySet="MyNews" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <EntitySet Name="AdminUser" EntityType="qtcSecondHandModel.AdminUser" />
+          <EntitySet Name="ShiWu" EntityType="qtcSecondHandModel.ShiWu" />
+          <EntitySet Name="FriendLink" EntityType="qtcSecondHandModel.FriendLink" />
+        </EntityContainer>
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="Int16" Nullable="false" />
+          <Property Name="MaiDian" Type="String" Nullable="true" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="LaiYuan" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="BigImageAddress" Type="String" Nullable="false" MaxLength="512" Unicode="true" FixedLength="false" />
+          <Property Name="Descript" Type="String" Nullable="false" MaxLength="2048" Unicode="true" FixedLength="false" />
+          <Property Name="DelGlag" Type="Int16" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UserInfo" Relationship="qtcSecondHandModel.UserInfoGoods" FromRole="Goods" ToRole="UserInfo" />
+          <Property Name="UserInfoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SaleInfo" Relationship="qtcSecondHandModel.GoodsSaleInfo" FromRole="Goods" ToRole="SaleInfo" />
+          <Property Name="SmallImageAddress" Type="String" Nullable="false" MaxLength="512" Unicode="true" FixedLength="false" />
+          <Property Name="ShopingId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Shoping" Relationship="qtcSecondHandModel.ShopingGoods" FromRole="Goods" ToRole="Shoping" />
+          <Property Name="SeeCount" Type="Int32" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="MySee" Relationship="qtcSecondHandModel.GoodsMySee" FromRole="Goods" ToRole="MySee" />
+        </EntityType>
+        <EntityType Name="SaleInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RealName" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="QQ" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNum" Type="String" Nullable="false" MaxLength="11" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Goods" Relationship="qtcSecondHandModel.GoodsSaleInfo" FromRole="SaleInfo" ToRole="Goods" />
+          <Property Name="GoodsId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="UserInfoGoods">
+          <End Type="qtcSecondHandModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+          <End Type="qtcSecondHandModel.Goods" Role="Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="UserInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GoodsSaleInfo">
+          <End Type="qtcSecondHandModel.Goods" Role="Goods" Multiplicity="1" />
+          <End Type="qtcSecondHandModel.SaleInfo" Role="SaleInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleInfo">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Shoping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="UserInfo" Relationship="qtcSecondHandModel.UserInfoShoping" FromRole="Shoping" ToRole="UserInfo" />
+          <Property Name="UserInfoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="qtcSecondHandModel.ShopingGoods" FromRole="Shoping" ToRole="Goods" />
+          <Property Name="GoodsId" Type="Int32" Nullable="false" />
+          <Property Name="DelFlag" Type="Int16" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
+          </EntityType>
+        <Association Name="UserInfoShoping">
+          <End Type="qtcSecondHandModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+          <End Type="qtcSecondHandModel.Shoping" Role="Shoping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Shoping">
+              <PropertyRef Name="UserInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ShopingGoods">
+          <End Type="qtcSecondHandModel.Shoping" Role="Shoping" Multiplicity="*" />
+          <End Type="qtcSecondHandModel.Goods" Role="Goods" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Shoping">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserInfoExt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserInfoId" Type="Int32" Nullable="false" />
+          <Property Name="NickName" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" DefaultValue=" " />
+          <Property Name="RealName" Type="String" Nullable="true" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="Gender" Type="Int16" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="true" Precision="3" />
+          <Property Name="Address" Type="String" Nullable="true" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="TouXiang" Type="String" Nullable="true" MaxLength="256" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="MySee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="UserInfo" Relationship="qtcSecondHandModel.UserInfoMySee" FromRole="MySee" ToRole="UserInfo" />
+          <Property Name="UserInfoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="qtcSecondHandModel.GoodsMySee" FromRole="MySee" ToRole="Goods" />
+          <Property Name="GoodsId" Type="Int32" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="UserInfoMySee">
+          <End Type="qtcSecondHandModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+          <End Type="qtcSecondHandModel.MySee" Role="MySee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MySee">
+              <PropertyRef Name="UserInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GoodsMySee">
+          <End Type="qtcSecondHandModel.Goods" Role="Goods" Multiplicity="1" />
+          <End Type="qtcSecondHandModel.MySee" Role="MySee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MySee">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Suggest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="512" />
+          <Property Name="OpenSpeed" Type="Int16" Nullable="false" />
+          <Property Name="Beautiful" Type="Int16" Nullable="false" />
+          <Property Name="SettingType" Type="Int16" Nullable="false" />
+          <Property Name="Convenient" Type="Int16" Nullable="false" />
+          <Property Name="Vivid" Type="Int16" Nullable="false" />
+          <Property Name="AllPopulation" Type="Int16" Nullable="false" />
+          <Property Name="Aim" Type="Int16" Nullable="false" />
+          <Property Name="QQNum" Type="String" Nullable="true" MaxLength="16" />
+          <Property Name="Email" Type="String" Nullable="true" MaxLength="64" />
+          <Property Name="PhoneNum" Type="String" Nullable="true" MaxLength="64" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ListShops">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
+          <Property Name="UserInfoId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int16" Nullable="false" />
+          <Property Name="RealName" Type="String" Nullable="false" MaxLength="32" />
+          <Property Name="IdCard" Type="String" Nullable="false" MaxLength="64" />
+          <Property Name="CardAddress" Type="String" Nullable="false" MaxLength="256" />
+          <Property Name="CalssName" Type="String" Nullable="false" />
+          <Property Name="IsShenHe" Type="Int16" Nullable="false" DefaultValue="0" />
+          <Property Name="SheHeAdminId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="MyNews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="64" />
+          <Property Name="IsSee" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="UserInfo" Relationship="qtcSecondHandModel.MyNewsUserInfo" FromRole="MyNews" ToRole="UserInfo" />
+          <Property Name="UserInfoId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="MyNewsUserInfo">
+          <End Type="qtcSecondHandModel.MyNews" Role="MyNews" Multiplicity="*" />
+          <End Type="qtcSecondHandModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MyNews">
+              <PropertyRef Name="UserInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Uid" Type="String" Nullable="false" MaxLength="128" />
+          <Property Name="Pwd" Type="String" Nullable="false" MaxLength="128" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="ShiWu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNum" Type="String" Nullable="false" />
+          <Property Name="ThingName" Type="String" Nullable="false" />
+          <Property Name="Descript" Type="String" Nullable="false" />
+          <Property Name="SubTime" Type="DateTime" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Type" Type="Int16" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FriendLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KeyWords" Type="String" Nullable="false" />
+          <Property Name="LinkTo" Type="String" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="qtcSecondHandModelStoreContainer" CdmEntityContainer="qtcSecondHandEntities">
+    <EntitySetMapping Name="UserInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(qtcSecondHandModel.UserInfo)">
+        <MappingFragment StoreEntitySet="UserInfo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="DelFalg" ColumnName="DelFalg" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+          <ScalarProperty Name="SendEmailTime" ColumnName="SendEmailTime" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+          <ScalarProperty Name="EmailCode" ColumnName="EmailCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Goods">
+      <EntityTypeMapping TypeName="IsTypeOf(qtcSecondHandModel.Goods)">
+        <MappingFragment StoreEntitySet="Goods">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="MaiDian" ColumnName="MaiDian" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="LaiYuan" ColumnName="LaiYuan" />
+          <ScalarProperty Name="BigImageAddress" ColumnName="BigImageAddress" />
+          <ScalarProperty Name="Descript" ColumnName="Descript" />
+          <ScalarProperty Name="DelGlag" ColumnName="DelGlag" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+          <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
+          <ScalarProperty Name="SmallImageAddress" ColumnName="SmallImageAddress" />
+          <ScalarProperty Name="ShopingId" ColumnName="ShopingId" />
+          <ScalarProperty Name="SeeCount" ColumnName="SeeCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(qtcSecondHandModel.SaleInfo)">
+        <MappingFragment StoreEntitySet="SaleInfo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="QQ" ColumnName="QQ" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shoping">
+      <EntityTypeMapping TypeName="IsTypeOf(qtcSecondHandModel.Shoping)">
+        <MappingFragment StoreEntitySet="Shoping">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
+          <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+          <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfoExt">
+      <EntityTypeMapping TypeName="IsTypeOf(qtcSecondHandModel.UserInfoExt)">
+        <MappingFragment StoreEntitySet="UserInfoExt">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="TouXiang" ColumnName="TouXiang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MySee">
+      <EntityTypeMapping TypeName="IsTypeOf(qtcSecondHandModel.MySee)">
+        <MappingFragment StoreEntitySet="MySee">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
+          <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suggest">
+      <EntityTypeMapping TypeName="IsTypeOf(qtcSecondHandModel.Suggest)">
+        <MappingFragment StoreEntitySet="Suggest">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="OpenSpeed" ColumnName="OpenSpeed" />
+          <ScalarProperty Name="Beautiful" ColumnName="Beautiful" />
+          <ScalarProperty Name="SettingType" ColumnName="SettingType" />
+          <ScalarProperty Name="Convenient" ColumnName="Convenient" />
+          <ScalarProperty Name="Vivid" ColumnName="Vivid" />
+          <ScalarProperty Name="AllPopulation" ColumnName="AllPopulation" />
+          <ScalarProperty Name="Aim" ColumnName="Aim" />
+          <ScalarProperty Name="QQNum" ColumnName="QQNum" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ListShops">
+      <EntityTypeMapping TypeName="IsTypeOf(qtcSecondHandModel.ListShops)">
+        <MappingFragment StoreEntitySet="ListShops">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+          <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="IdCard" ColumnName="IdCard" />
+          <ScalarProperty Name="CardAddress" ColumnName="CardAddress" />
+          <ScalarProperty Name="CalssName" ColumnName="CalssName" />
+          <ScalarProperty Name="IsShenHe" ColumnName="IsShenHe" />
+          <ScalarProperty Name="SheHeAdminId" ColumnName="SheHeAdminId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MyNews">
+      <EntityTypeMapping TypeName="IsTypeOf(qtcSecondHandModel.MyNews)">
+        <MappingFragment StoreEntitySet="MyNews">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="IsSee" ColumnName="IsSee" />
+          <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminUser">
+      <EntityTypeMapping TypeName="IsTypeOf(qtcSecondHandModel.AdminUser)">
+        <MappingFragment StoreEntitySet="AdminUser">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Uid" ColumnName="Uid" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShiWu">
+      <EntityTypeMapping TypeName="IsTypeOf(qtcSecondHandModel.ShiWu)">
+        <MappingFragment StoreEntitySet="ShiWu">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+          <ScalarProperty Name="ThingName" ColumnName="ThingName" />
+          <ScalarProperty Name="Descript" ColumnName="Descript" />
+          <ScalarProperty Name="SubTime" ColumnName="SubTime" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FriendLink">
+      <EntityTypeMapping TypeName="IsTypeOf(qtcSecondHandModel.FriendLink)">
+        <MappingFragment StoreEntitySet="FriendLink">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
+          <ScalarProperty Name="LinkTo" ColumnName="LinkTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

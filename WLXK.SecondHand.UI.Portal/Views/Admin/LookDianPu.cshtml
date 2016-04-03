@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WLXK.SecondHand.Model.ListShops>
+
+@{
+    ViewBag.Title = "审核过的店铺";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+@section Header{
+
+}
+
+<h2>审核的店铺</h2>
+
+<p>
+</p>
+<table style="text-align:center;" border="1">
+    <tr>
+        <th>
+            申请时间
+        </th>
+        <th>
+            用户ID
+        </th>
+        <th>
+            店铺是否开通
+        </th>
+        <th>
+            真实姓名
+        </th>
+        <th>
+            身份证号码
+        </th>
+        <th>
+            学生证图片
+        </th>
+        <th>
+            班级名称
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserInfoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCard)
+            </td>
+            <td>
+                <img height="50" src="@item.CardAddress" alt="@item.CardAddress" />
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CalssName)
+            </td>
+        </tr>
+    }
+
+</table>

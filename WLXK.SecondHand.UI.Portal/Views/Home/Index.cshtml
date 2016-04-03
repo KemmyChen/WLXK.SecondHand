@@ -1,0 +1,646 @@
+﻿@{
+    ViewBag.Title = "青职二货街_青职学院二手交易市场";
+    Layout = "/Views/Shared/_LayoutIndex.cshtml";
+}
+@section Header{
+    <meta name="description" content="青职二货街是由物联星空社团搭建的一个校园二手交易平台,旨在帮助青职学院同学们提供一个二手闲置物品交易的平台,可以使资源得到充分和循环利用,给学生们带来福利。并且提供失物招领等板块">
+    <meta name="keywords" content="青职二货街,青职二手,青岛职业技术学院二手市场,学生二手,青职学院二手市场,青职二手交易,青职二手市场,青岛大学生交易市场,青职学院失物招领" />
+    <script src="/Scripts/jquery-1.8.2.js"></script>
+    <link href="/Content/css/slide.css" rel="stylesheet" />
+    <link href="/Content/css/slide-2.css" rel="stylesheet" />
+    <link href="/Content/css/index.css" rel="stylesheet" />
+    <script src="/Scripts/slide.js"></script>
+    <link href="/Content/css/Home/Index.css" rel="stylesheet" />
+    <script src="/Scripts/Home/Index.js"></script>
+}
+<div id="search">
+    <div id="searchbody">
+        <div id="logo">
+            <a href="/home/index"><img border="0" id="logoimg" width="362" height="95" src="/Content/images/logo.gif" alt="青职二货街logo" /></a>
+        </div>
+        <div id="searchform">
+            <input id="key" type="text" value="" border="0" name="txtKey" />
+            <input id="btnsea" type="submit" value="搜索" />
+            <div id="hot">
+                <span>热门搜索：</span>
+                <a href="/Home/Get">失物招领</a>
+                <a href="/home/Search?key=学习用品">学习用品</a>
+                <a href="/home/Search?key=书籍资料">书籍材料</a>
+                <a href="/home/Search?key=优秀二铺">优秀二铺</a>
+                <a href="/home/Search?key=电子数码">电子数码</a>
+                <a href="/home/Search?key=二手转卖">二手转卖</a>
+            </div>
+        </div>
+        <div id="weixin">
+            <div>微信扫描</div>
+            <img src="/Content/images/qrcode.jpg" width="86" height="86" />
+        </div>
+        <div id="cancel">
+        </div>
+    </div>
+</div>
+<div id="home_nav">
+    <ul>
+        <li><a href="/Home/Index">首页</a></li>
+        <li><a href="/Home/Get">失物招领</a></li>
+        <li><a href="/OrderCenter/Home">个人中心</a></li>
+        <li><a href="/OrderCenter/OpenShop">卖家中心</a></li>
+        <li><a href="/Others/SubMit">客户服务</a></li>
+        <li><a href="/Others/Suggest">意见反馈</a></li>
+        <li><a href="/Others/AboutUs">关于我们</a></li>
+    </ul>
+</div>
+<div id="bd">
+    <div id="first">
+        <ul id="menu">
+            <li><a href="/Home/Get">青职学院失物招领</a></li>
+            <li><a href="/home/Search?key=手机">手机</a><a href="/home/Search?key=数码">数码</a></li>
+            <li><a href="/home/Search?key=电脑">电脑</a><a href="/home/Search?key=办公">办公</a></li>
+            <li><a href="/home/Search?key=服装">服装</a><a href="/home/Search?key=箱包">箱包</a></li>
+            <li><a href="/home/Search?key=文具">文具</a><a href="/home/Search?key=学习用品">学习用品</a></li>
+            <li><a href="/home/Search?key=物品租赁">物品租赁</a><a href="/home/Search?key=电脑服务">电脑服务</a></li>
+            <li><a href="/home/Search?key=游戏">游戏</a><a href="/home/Search?key=充值">充值</a><a href="/home/Search?key=彩票">彩票</a></li>
+            <li><a href="/home/Search?key=新生物品必备">新生物品必备</a></li>
+            <li><a href="/home/Search?key=一元起拍">一元起拍</a></li>
+            <li><a href="/home/Search?key=全新闲置">全新闲置</a></li>
+        </ul>
+        <div id="wrap">
+            <ul id="listimg">
+                <div class="ca1_slide">
+                    <div id="slider-wrapper">
+                        <div id="slider-bg">
+                            <div id="slider-photos">
+                                <div id="slides">
+                                    <div class="slides_container">
+
+                                        @{List<WLXK.SecondHand.Model.Goods> SlideSales = ViewData["SlideSales"] as List<WLXK.SecondHand.Model.Goods>;}
+
+                                        @foreach (var item in SlideSales)
+                                        {
+                                            <div class="slide">
+                                                <img src="@item.BigImageAddress" width="698" height="310" alt="@item.Title" />
+                                                <div class="caption" style="bottom:0">
+                                                    <h1>
+                                                        <a href="/Home/ShowGoods/@item.Id" style="text-decoration:none;font-size:12px;">
+                                                            @if (item.MaiDian.Length > 50)
+                                                            {
+                                                                @item.MaiDian.Substring(0, 50)<span>...</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                @item.MaiDian
+                                                            }
+                                                        </a>
+                                                    </h1>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    <a href="#" class="prev"><img src="/Content/images/slide/arrow-prev.png" width="30" height="70" alt="Arrow Prev" border="0"></a>
+                                    <a href="#" class="next"><img src="/Content/images/slide/arrow-next.png" width="30" height="70" alt="Arrow Next" border="0"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+            <ul id="fir_foot">
+                <div class="box">
+                    <div class="picbox">
+                        <ul class="piclist mainlist">
+                            @{List<WLXK.SecondHand.Model.Goods> secondSales = ViewData["SecondSales"] as List<WLXK.SecondHand.Model.Goods>;}
+                            @foreach (var item in secondSales)
+                            {
+                                <li><a href="/Home/ShowGoods/@item.Id"><img src="@item.SmallImageAddress" width="230" height="160" alt="@item.Title 青职二货街商品" /></a></li>
+                            }
+                        </ul>
+                        <ul class="piclist swaplist"></ul>
+                    </div>
+                    <div class="og_prev"></div>
+                    <div class="og_next"></div>
+                </div>
+            </ul>
+        </div>
+        <div id="others">
+            <div id="bianmin">
+                <h3 id="zuixin">最新发布商品</h3>
+                @{List<WLXK.SecondHand.Model.Goods> newlist = ViewData["NewGoods"] as List<WLXK.SecondHand.Model.Goods>;}
+                <ul>
+                    @if (newlist.Count > 0)
+                    {
+                        foreach (var item in newlist)
+                        {
+                            <li>
+                                <a href="/Home/ShowGoods/@item.Id">
+                                    @if (item.Title.Length > 18)
+                                    {
+                                        @item.Title.Substring(0, 18)<span>...</span>
+                                    }
+                                    else
+                                    {
+                                        @item.Title
+                                    }
+                                </a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li style="color:red">暂无最新发布商品!</li>
+                    }
+
+                </ul>
+            </div>
+            <div id="person">
+                <div>
+                    @if (Session["model"] != null)
+                    {
+                        WLXK.SecondHand.Model.UserInfoExt ext = ViewData["ext"] as WLXK.SecondHand.Model.UserInfoExt;
+
+                        <img width="65" height="65" src="@ext.TouXiang" alt="头像" alt="青职二货街用户头像" />
+
+                    }
+                    else
+                    {
+                        <img width="65" height="65" src="/Upload/default/default.jpg" alt="头像" />
+                    }
+
+
+                </div>
+                <div id="per_bd">
+                    Hi！@if (Session["model"] == null)
+                    {
+                        <font>请登录</font>
+                    }
+                    else
+                    {
+                        WLXK.SecondHand.Model.UserInfo user = (WLXK.SecondHand.Model.UserInfo)Session["model"];
+                        @user.Uid
+                    }
+                    <a href="http://www.qingzhi2shou.com/">青职学院二手市场</a>
+                </div>
+                <div id="per_bd2">
+                    <a href="/Account/Login">登录</a>
+                    <a href="/Account/Register">注册</a>
+                    <a href="/OrderCenter/OpenShop">免费开店</a>
+                </div>
+            </div>
+            <div id="notice">
+                <div id="notice_hd">
+                    <div class="title">
+                        传送门
+                    </div>
+                </div>
+                <div id="notice_bd">
+                    <a href="/OrderCenter/AddGoods">发布闲置物品</a>
+                    <a href="/OrderCenter/ShowGoods">我的闲置物品</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sales_type">
+        <div class="sales_title">
+            特色全新商品
+        </div>
+        <ul class="sales_content" style="border:1px solid #fd6440;clear:both">
+            @{List<WLXK.SecondHand.Model.Goods> newsGoods = ViewData["NewsGoods"] as List<WLXK.SecondHand.Model.Goods>;}
+
+            @foreach (var item in newsGoods)
+            {
+                if (item.Id % 2 == 0)
+                {
+                    <li class="con_first">
+                        <span class="con_title">
+                            <a class="con_link" href="/Home/ShowGoods/@item.Id">
+                                @if (item.Title.Length >= 7)
+                                {
+                                    @item.Title.Substring(0, 7)<span>...</span>
+                                }
+                                else
+                                {
+                                    @item.Title
+                                }
+                            </a>
+                            <a class="con_about2" href="/Home/ShowGoods/@item.Id">
+                                @if (item.MaiDian.Length > 8)
+                                {
+                                    @item.MaiDian.Substring(0, 8)<span>...</span>
+                                }
+                                else
+                                {
+                                    @item.MaiDian
+                                }
+                            </a>
+                            <span class="con_about3">先到先得</span>
+                            <a class="con_get" href="/Home/ShowGoods/@item.Id">立即查看</a>
+                        </span>
+                        <a href="/Home/ShowGoods/@item.Id"><img class="con_img" height="120" width="120" src="@item.SmallImageAddress" alt="@item.Title 青职二货街商品" /></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="con_second">
+                        <span class="con_title">
+                            <a class="con_link" href="/Home/ShowGoods/@item.Id">
+                                @if (item.Title.Length >= 7)
+                                {
+                                    @item.Title.Substring(0, 7)<span>...</span>
+                                }
+                                else
+                                {
+                                    @item.Title
+                                }
+                            </a>
+                            <a class="con_about2" href="/Home/ShowGoods/@item.Id">
+                                @if (item.MaiDian.Length > 8)
+                                {
+                                    @item.MaiDian.Substring(0, 8)
+                                }
+                                else
+                                {
+                                    @item.MaiDian
+                                }
+                            </a>
+                            <span class="con_about3">先到先得</span>
+                            <a class="con_get" href="/Home/ShowGoods/@item.Id">立即查看</a>
+                        </span>
+                        <a href="/Home/ShowGoods/@item.Id"><img class="con_img" height="120" width="120" src="@item.SmallImageAddress" alt="@item.Title 青职二货街商品" /></a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+    <div class="sales_type">
+        <div class="sales_title">
+            特色九成新商品
+        </div>
+        <ul class="sales_content">
+            @{List<WLXK.SecondHand.Model.Goods> NineGoods = ViewData["NineGoods"] as List<WLXK.SecondHand.Model.Goods>;}
+
+            @foreach (var item in NineGoods)
+            {
+                if (item.Id % 2 == 0)
+                {
+                    <li class="con_first">
+                        <span class="con_title">
+                            <a class="con_link" href="/Home/ShowGoods/@item.Id">
+                                @if (item.Title.Length >= 7)
+                                {
+                                    @item.Title.Substring(0, 7)<span>...</span>
+                                }
+                                else
+                                {
+                                    @item.Title
+                                }
+                            </a>
+                            <a class="con_about2" href="/Home/ShowGoods/@item.Id">
+                                @if (item.MaiDian.Length > 8)
+                                {
+                                    @item.MaiDian.Substring(0, 8)
+                                }
+                                else
+                                {
+                                    @item.MaiDian
+                                }
+                            </a>
+                            <span class="con_about3">先到先得</span>
+                            <a class="con_get" href="/Home/ShowGoods/@item.Id">立即查看</a>
+                        </span>
+                        <a href="/Home/ShowGoods/@item.Id"><img class="con_img" height="120" width="120" src="@item.SmallImageAddress" alt="@item.Title 青职二货街商品" /></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="con_second">
+                        <span class="con_title">
+                            <a class="con_link" href="/Home/ShowGoods/@item.Id">
+                                @if (item.Title.Length >= 7)
+                                {
+                                    @item.Title.Substring(0, 7)
+                                }
+                                else
+                                {
+                                    @item.Title
+                                }
+                            </a>
+                            <a class="con_about2" href="/Home/ShowGoods/@item.Id">
+                                @if (item.MaiDian.Length > 8)
+                                {
+                                    @item.MaiDian.Substring(0, 8)
+                                }
+                                else
+                                {
+                                    @item.MaiDian
+                                }
+                            </a>
+                            <span class="con_about3">先到先得</span>
+                            <a class="con_get" href="/Home/ShowGoods/@item.Id">立即查看</a>
+                        </span>
+                        <a href="/Home/ShowGoods/@item.Id"><img class="con_img" height="120" width="120" src="@item.SmallImageAddress" alt="@item.Title 青职二货街商品" /></a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+    <div class="sales_type">
+        <div class="sales_title">
+            特色八成新商品
+        </div>
+        <ul class="sales_content">
+            @{List<WLXK.SecondHand.Model.Goods> EighGoods = ViewData["EighGoods"] as List<WLXK.SecondHand.Model.Goods>;}
+
+            @foreach (var item in EighGoods)
+            {
+                if (item.Id % 2 == 0)
+                {
+                    <li class="con_first">
+                        <span class="con_title">
+                            <a class="con_link" href="/Home/ShowGoods/@item.Id">
+                                @if (item.Title.Length >= 7)
+                                {
+                                    @item.Title.Substring(0, 7)
+                                }
+                                else
+                                {
+                                    @item.Title
+                                }
+                            </a>
+                            <a class="con_about2" href="/Home/ShowGoods/@item.Id">
+                                @if (item.MaiDian.Length > 8)
+                                {
+                                    @item.MaiDian.Substring(0, 8)
+                                }
+                                else
+                                {
+                                    @item.MaiDian
+                                }
+                            </a>
+                            <span class="con_about3">先到先得</span>
+                            <a class="con_get" href="/Home/ShowGoods/@item.Id">立即查看</a>
+                        </span>
+                        <a href="/Home/ShowGoods/@item.Id"><img class="con_img" height="120" width="120" src="@item.SmallImageAddress" alt="@item.Title 青职二货街商品" /></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="con_second">
+                        <span class="con_title">
+                            <a class="con_link" href="/Home/ShowGoods/@item.Id">
+                                @if (item.Title.Length >= 7)
+                                {
+                                    @item.Title.Substring(0, 7)
+                                }
+                                else
+                                {
+                                    @item.Title
+                                }
+                            </a>
+                            <a class="con_about2" href="/Home/ShowGoods/@item.Id">
+                                @if (item.MaiDian.Length > 8)
+                                {
+                                    @item.MaiDian.Substring(0, 8)
+                                }
+                                else
+                                {
+                                    @item.MaiDian
+                                }
+                            </a>
+                            <span class="con_about3">先到先得</span>
+                            <a class="con_get" href="/Home/ShowGoods/@item.Id">立即查看</a>
+                        </span>
+                        <a href="/Home/ShowGoods/@item.Id"><img class="con_img" height="120" width="120" src="@item.SmallImageAddress" alt="@item.Title 青职二货街商品" /></a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+    <div class="sales_type">
+        <div class="sales_title">
+            特色七成新商品
+        </div>
+        <ul class="sales_content">
+            @{List<WLXK.SecondHand.Model.Goods> SevenGoods = ViewData["SevenGoods"] as List<WLXK.SecondHand.Model.Goods>;}
+
+            @foreach (var item in SevenGoods)
+            {
+                if (item.Id % 2 == 0)
+                {
+                    <li class="con_first">
+                        <span class="con_title">
+                            <a class="con_link" href="/Home/ShowGoods/@item.Id">
+                                @if (item.Title.Length >= 7)
+                                {
+                                    @item.Title.Substring(0, 7)
+                                }
+                                else
+                                {
+                                    @item.Title
+                                }
+                            </a>
+                            <a class="con_about2" href="/Home/ShowGoods/@item.Id">
+                                @if (item.MaiDian.Length > 8)
+                                {
+                                    @item.MaiDian.Substring(0, 8)
+                                }
+                                else
+                                {
+                                    @item.MaiDian
+                                }
+                            </a>
+                            <span class="con_about3">先到先得</span>
+                            <a class="con_get" href="/Home/ShowGoods/@item.Id">立即查看</a>
+                        </span>
+                        <a href="/Home/ShowGoods/@item.Id"><img class="con_img" height="120" width="120" src="@item.SmallImageAddress" alt="@item.Title 青职二货街商品" /></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="con_second">
+                        <span class="con_title">
+                            <a class="con_link" href="/Home/ShowGoods/@item.Id">
+                                @if (item.Title.Length >= 7)
+                                {
+                                    @item.Title.Substring(0, 7)
+                                }
+                                else
+                                {
+                                    @item.Title
+                                }
+                            </a>
+                            <a class="con_about2" href="/Home/ShowGoods/@item.Id">
+                                @if (item.MaiDian.Length > 8)
+                                {
+                                    @item.MaiDian.Substring(0, 8)
+                                }
+                                else
+                                {
+                                    @item.MaiDian
+                                }
+                            </a>
+                            <span class="con_about3">先到先得</span>
+                            <a class="con_get" href="/Home/ShowGoods/@item.Id">立即查看</a>
+                        </span>
+                        <a href="/Home/ShowGoods/@item.Id"><img class="con_img" height="120" width="120" src="@item.SmallImageAddress" alt="@item.Title 青职二货街商品" /></a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+    <div class="sales_type">
+        <div class="sales_title">
+            特色刘成新商品
+        </div>
+        <ul class="sales_content">
+            @{List<WLXK.SecondHand.Model.Goods> SixGoods = ViewData["SixGoods"] as List<WLXK.SecondHand.Model.Goods>;}
+
+            @foreach (var item in SixGoods)
+            {
+                if (item.Id % 2 == 0)
+                {
+                    <li class="con_first">
+                        <span class="con_title">
+                            <a class="con_link" href="/Home/ShowGoods/@item.Id">
+                                @if (item.Title.Length >= 7)
+                                {
+                                    @item.Title.Substring(0, 7)
+                                }
+                                else
+                                {
+                                    @item.Title
+                                }
+                            </a>
+                            <a class="con_about2" href="/Home/ShowGoods/@item.Id">
+                                @if (item.MaiDian.Length > 8)
+                                {
+                                    @item.MaiDian.Substring(0, 8)
+                                }
+                                else
+                                {
+                                    @item.MaiDian
+                                }
+                            </a>
+                            <span class="con_about3">先到先得</span>
+                            <a class="con_get" href="/Home/ShowGoods/@item.Id">立即查看</a>
+                        </span>
+                        <a href="/Home/ShowGoods/@item.Id"><img class="con_img" height="120" width="120" src="@item.SmallImageAddress" alt="@item.Title 青职二货街商品" /></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="con_second">
+                        <span class="con_title">
+                            <a class="con_link" href="/Home/ShowGoods/@item.Id">
+                                @if (item.Title.Length >= 7)
+                                {
+                                    @item.Title.Substring(0, 7)
+                                }
+                                else
+                                {
+                                    @item.Title
+                                }
+                            </a>
+                            <a class="con_about2" href="/Home/ShowGoods/@item.Id">
+                                @if (item.MaiDian.Length > 8)
+                                {
+                                    @item.MaiDian.Substring(0, 8)
+                                }
+                                else
+                                {
+                                    @item.MaiDian
+                                }
+                            </a>
+                            <span class="con_about3">先到先得</span>
+                            <a class="con_get" href="/Home/ShowGoods/@item.Id">立即查看</a>
+                        </span>
+                        <a href="/Home/ShowGoods/@item.Id"><img class="con_img" height="120" width="120" src="@item.SmallImageAddress" alt="@item.Title 青职二货街商品" /></a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+    <div class="sales_type">
+        <div class="sales_title">
+            废旧商品商品
+        </div>
+        <ul class="sales_content">
+            @{List<WLXK.SecondHand.Model.Goods> OthersGoods = ViewData["OthersGoods"] as List<WLXK.SecondHand.Model.Goods>;}
+
+            @foreach (var item in OthersGoods)
+            {
+                if (item.Id % 2 == 0)
+                {
+                    <li class="con_first">
+                        <span class="con_title">
+                            <a class="con_link" href="/Home/ShowGoods/@item.Id">
+                                @if (item.Title.Length >= 7)
+                                {
+                                    @item.Title.Substring(0, 7)
+                                }
+                                else
+                                {
+                                    @item.Title
+                                }
+                            </a>
+                            <a class="con_about2" href="/Home/ShowGoods/@item.Id">
+                                @if (item.MaiDian.Length > 8)
+                                {
+                                    @item.MaiDian.Substring(0, 8)
+                                }
+                                else
+                                {
+                                    @item.MaiDian
+                                }
+                            </a>
+                            <span class="con_about3">先到先得</span>
+                            <a class="con_get" href="/Home/ShowGoods/@item.Id">立即查看</a>
+                        </span>
+                        <a href="/Home/ShowGoods/@item.Id"><img class="con_img" height="120" width="120" src="@item.SmallImageAddress" alt="@item.Title 青职二货街商品" /></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="con_second">
+                        <span class="con_title">
+                            <a class="con_link" href="/Home/ShowGoods/@item.Id">
+                                @if (item.Title.Length >= 7)
+                                {
+                                    @item.Title.Substring(0, 7)
+                                }
+                                else
+                                {
+                                    @item.Title
+                                }
+                            </a>
+                            <a class="con_about2" href="/Home/ShowGoods/@item.Id">
+                                @if (item.MaiDian.Length > 8)
+                                {
+                                    @item.MaiDian.Substring(0, 8)
+                                }
+                                else
+                                {
+                                    @item.MaiDian
+                                }
+                            </a>
+                            <span class="con_about3">先到先得</span>
+                            <a class="con_get" href="/Home/ShowGoods/@item.Id">立即查看</a>
+                        </span>
+                        <a href="/Home/ShowGoods/@item.Id"><img class="con_img" height="120" width="120" src="@item.SmallImageAddress" alt="@item.Title 青职二货街商品" /></a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+<div style="border-top: 1px solid #DDDDDD; width: 1200px; width: 1200px; margin: 30px auto; clear: both; padding-top:10px;padding-left:10px;margin-bottom:80px;">
+    <div style="float:left;">友情连接：</div>
+    @{List<WLXK.SecondHand.Model.FriendLink> listFriend = ViewData["FriendLink"] as List<WLXK.SecondHand.Model.FriendLink>;}
+    <ul class="lianjie">
+
+        @foreach (var item in listFriend)
+        {
+            <li><a href="@item.LinkTo" target="_blank">@item.KeyWords</a></li>
+        }
+    </ul>
+</div>
+
+

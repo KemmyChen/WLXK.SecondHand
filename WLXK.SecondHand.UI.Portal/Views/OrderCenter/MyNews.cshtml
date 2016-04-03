@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "我的消息";
+    Layout = "~/Views/Shared/order/_LayoutOrderHome.cshtml";
+}
+@section Header{
+    <link href="/Content/css/nav.css" rel="stylesheet" />
+    <link href="/Content/css/ShowMyGoods.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.8.2.js"></script>
+    <link href="/Content/css/OrderCenter/MyNews.css" rel="stylesheet" />
+    <script src="/Scripts/OrderCenter/MyNews.js"></script>
+
+}
+<h3>我的消息</h3>
+
+@{var list = ViewData["mynews"] as List<WLXK.SecondHand.Model.MyNews>;}
+@{if (list.Count() <= 0)
+{
+    <div style="height:300px;color:red;font-weight:bold;line-height:300px;text-align:center;">
+        暂无消息
+    </div>
+}
+else
+{
+    <ul id="list_hd">
+        <li id="xinxi">消息标题</li>
+        <li id="xinxi">时间</li>
+    </ul>
+    foreach (WLXK.SecondHand.Model.MyNews good in list)
+    {
+        <div class="good_list">
+            <div class="goods">
+                <span class="good_title">
+                    @if (good.IsSee == 0)
+                    {
+
+                        <a href="javascript:void(0)" ids="@good.Id" class="mynew" style="color:#ff6440;">
+                            @good.Title
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="javascript:void(0)" ids="@good.Id" class="mynew">
+                            @good.Title
+                        </a>
+                    }
+                </span>
+                <span class="good_danjia">
+                    @good.SubTime
+                </span>
+                <span class="good_danjia">
+                    @if (good.IsSee == 0)
+                    {
+                        <a ids="@good.Id" href="javascript:void(0)" class="mynew" style="color:blue">标为已读</a>
+                    }
+                    else
+                    {
+                        <a href="javascript:void(0)">已读消息</a>
+                    }
+
+                </span>
+            </div>
+        </div>
+    }
+}
+
+}
+@{int pageindex = int.Parse(ViewData["pageIndex"].ToString());
+int count = int.Parse(ViewData["Count"].ToString());
+}
+<input type="hidden" id="pageindex" value="@pageindex" />
+
+<div class="paginator" style="margin-top:50px;">
+    @Html.ShowPageNavigate(pageindex, 8, count)
+</div>
+
+<div style="height:50px;"></div>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+  <object type="WLXK.SecondHand.UI.Portal.Controllers.HomeController, WLXK.SecondHand.UI.Portal" singleton="false" >
+    <property name="UserInfoServices" ref="UserInfoServices"/>
+    <property name="GoodsServices" ref="GoodsServices"/>
+    <property name="SaleInfoServices" ref="SaleInfoServices"/>
+    <property name="MySeeServices" ref="MySeeServices"/>
+    <property name="ShopingServices" ref="ShopingServices"/>
+    <property name="AdminUserServices" ref="AdminUserServices"/>
+    <property name="ListShopsServices" ref="ListShopsServices"/>
+    <property name="UserInfoExtServices" ref="UserInfoExtServices"/>
+    <property name="ShiWuServices" ref="ShiWuServices"/>
+    <property name="FriendLinkServices" ref="FriendLinkServices"/>
+  </object>
+
+  <object type="WLXK.SecondHand.UI.Portal.Controllers.AccountController, WLXK.SecondHand.UI.Portal" singleton="false" >
+    <property name="UserInfoServices" ref="UserInfoServices"/>
+    <property name="UserInfoExtServices" ref="UserInfoExtServices"/>
+  </object>
+
+  <object type="WLXK.SecondHand.UI.Portal.Controllers.OrderCenterController, WLXK.SecondHand.UI.Portal" singleton="false" >
+    <property name="UserInfoServices" ref="UserInfoServices"/>
+    <property name="GoodsServices" ref="GoodsServices"/>
+    <property name="SaleInfoServices" ref="SaleInfoServices"/>
+    <property name="ShopingServices" ref="ShopingServices"/>
+    <property name="UserInfoExtServices" ref="UserInfoExtServices"/>
+    <property name="MySeeServices" ref="MySeeServices"/>
+    <property name="ListShopsServices" ref="ListShopsServices"/>
+    <property name="MyNewsServices" ref="MyNewsServices"/>
+    <property name="AdminUserServices" ref="AdminUserServices"/>
+  </object>
+
+  <object type="WLXK.SecondHand.UI.Portal.Controllers.OthersController, WLXK.SecondHand.UI.Portal" singleton="false" >
+    <property name="SuggestServices" ref="SuggestServices"/>
+    <property name="UserInfoServices" ref="UserInfoServices"/>
+    <property name="AdminUserServices" ref="AdminUserServices"/>
+    
+  </object>
+  <object type="WLXK.SecondHand.UI.Portal.Controllers.AdminController, WLXK.SecondHand.UI.Portal" singleton="false" >
+    <property name="ListShopsServices" ref="ListShopsServices"/>
+    <property name="MyNewsServices" ref="MyNewsServices"/>
+    <property name="UserInfoServices" ref="UserInfoServices"/>
+    <property name="GoodsServices" ref="GoodsServices"/>
+    <property name="AdminUserServices" ref="AdminUserServices"/>
+    <property name="UserInfoExtServices" ref="UserInfoExtServices"/>
+    <property name="FriendLinkServices" ref="FriendLinkServices"/>
+  </object>
+
+</objects>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WLXK.SecondHand.Model.FriendLink>
+
+@{
+    ViewBag.Title = "友情链接";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+@section Header{
+
+}
+
+<h2>友情链接列表</h2>
+
+<p>
+    @Html.ActionLink("新建友情链接", "CreateLink")
+</p>
+<table>
+    <tr>
+        <th>
+            关键词
+        </th>
+        <th>
+            链接
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KeyWords)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LinkTo)
+        </td>
+        <td>
+            @Html.ActionLink("删除友情链接", "DeleteLink", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

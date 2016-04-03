@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "登录|青职二货街";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+@section Header{
+    <link href="/Content/css/login.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.8.2.js"></script>
+    <script src="/Scripts/jquery.validate.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/Scripts/Account/Login.js"></script>
+
+}
+<div id="hd">
+    <a href="/Home/Index">
+        <img border="0" src="/Content/images/logo.jpg" alt="logo" height="93" width="183" />
+    </a>
+</div>
+<div id="bd">
+    <a href="/Home/Index">
+        <img border="0" id="image_login" src="/Content/images/login.jpg" alt="勤俭节约，是中华民族的传统美德。" width="550" height="306" />
+    </a>
+    @using (Ajax.BeginForm("Login", new AjaxOptions() { OnBegin = "CheckFrom", OnSuccess = "afterSubmit" }))
+    {
+        <input type="hidden" name="oldurl" value="@ViewData["oldurl"]" />
+        <div id="main">
+            <h4>登录</h4>
+            <span id="loginmsg" style="color:red;font-size:14px;"></span>
+            <input id="uid" placeholder="会员名/邮箱" type="text" value="@ViewData["username"]" name="txtUserName" />
+            <input id="pwd" placeholder="登录密码" type="password" value="" name="txtPassWord" />
+            <div class="msg">
+                <div class="left">
+                    <input name="Remeber" checked="checked" id="che_reme" type="checkbox" value="" style="height: 12px; width: 12px; line-height: 12px; border-color: #AAAAAA; color: #AAAAAA;" />
+                    <label for="che_reme" style="font-size: 12px; color: #AAAAAA">记住我</label>
+                </div>
+                <div class="right">
+                    <a href="/account/forget">忘记登录密码?</a>
+                </div>
+            </div>
+            <input id="btnlogin" type="submit" value="登   录" />
+            <div class="msg">
+                <div class="right"><a href="/account/Register">免费注册账户</a></div>
+            </div>
+        </div>
+    }
+</div>

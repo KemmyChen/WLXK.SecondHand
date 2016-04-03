@@ -1,0 +1,190 @@
+﻿@{
+    ViewBag.Title = "浏览商品|青职二货街";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+@section Header{
+    <link href="/Content/css/search.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.8.2.js"></script>
+    <link href="/Content/css/nav.css" rel="stylesheet" />
+}
+<div id="sea_bd">
+    <div id="search">
+        <div id="searchbody">
+            <div id="logo">
+                <a href="/home/index"><img border="0" id="logoimg" height="65" src="/Content/images/logo.jpg" alt="青职二货街" /></a>
+            </div>
+            <div id="searchform">
+                <form action="/Home/Search" method="get">
+                    <input id="key" type="text" value="@ViewData["key"]" border="0" name="key" />
+                    <input id="btnsea" type="submit" value="搜  索" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="show">
+        <div id="sh_left">
+            <div id="sh_nav">
+                <ul>
+                    <a href="#"><li>搜索列表</li></a>
+                </ul>
+            </div>
+            <div id="sh_list">
+                @{var list = ViewData["searchs"] as List<JobSerach>;}
+                @if (list.Count > 0)
+                {
+                    foreach (var item in list)
+                    {
+                        <div class="list">
+                            <div class="sh_all">
+                                <div class="sh_img">
+                                    <a href="/Home/ShowGoods/@item.Id"><img src="@item.ImageAddress" height="188" /></a>
+                                </div>
+                                <div class="sh_foot">
+                                    <div class="sh_a">
+                                        <a href="/Home/ShowGoods/@item.Id">
+                                            @{MvcHtmlString html = new MvcHtmlString(item.Title.ToString());}
+                                            @if (item.Title.Length > 50)
+                                            {
+                                                @html
+                                            }
+                                            else
+                                            {
+                                                @html
+                                            }
+                                        </a>
+                                    </div>
+                                    <div class="sh_jiage">
+                                        约 <span class="price_sign">￥</span>
+                                        <span class="price_sign">@item.Price</span>
+                                        <span class="price_count">
+                                            月销量：<span>456</span>
+                                        </span>
+                                    </div>
+                                    <div class="sh_pingjia">
+                                        <a href="/Home/ShowGoods/@item.Id">查看评价</a>
+                                    </div>
+                                    <div class="sh_info">
+                                        <a href="/Home/ShowGoods/@item.Id">查看店铺</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <font color="red" style="margin-left:20px;margin-top:50px;clear:both;">暂无相关商品</font>
+                }
+
+                @*44款搜索商品*@
+
+            </div>
+        </div>
+        <div id="sh_right">
+            @*12款商品*@
+            <div id="r_title">相关商品</div>
+            @{List<WLXK.SecondHand.Model.Goods> listAbout = ViewData["listAbout"] as List<WLXK.SecondHand.Model.Goods>;}
+            @if (listAbout.Count() > 0)
+            {
+                foreach (var item in listAbout)
+                {
+                    <div class="r_bd">
+                        <div class="bd_all">
+                            <div class="bd_img">
+                                <a href="/Home/ShowGoods/@item.Id"><img src="@item.SmallImageAddress" height="220" /></a>
+                            </div>
+                            <div class="bd_a">
+                                <a href="/Home/ShowGoods/@item.Id">
+                                    @if (item.Title.Length >= 30)
+                                    {
+                                        @item.Title.Substring(0, 30)
+                                    }
+                                    else
+                                    {
+                                        @item.Title
+                                    }
+                                </a>
+                            </div>
+                            <div class="sh_jiage">
+                                &nbsp;&nbsp;<span class="price_sign">￥</span>
+                                <span class="price_sign">@item.Price</span>
+                                <span class="price_count">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浏览量：<span>@item.SeeCount</span>
+                                </span>
+                            </div>
+                            <div class="sh_pingjia">
+                                <a href="/Home/ShowGoods/@item.Id">查看详情</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }else
+            {
+                <font color="red">暂无相关商品</font>
+            }
+
+        </div>
+    </div>
+    <div id="sh_nav">
+        <div class="paginator">
+            @{int pageindex = int.Parse(ViewData["pageIndex"].ToString());
+            int count = int.Parse(ViewData["Count"].ToString());
+            string key = ViewData["key"].ToString();
+            }
+            @Html.ShowPageNavigate(pageindex, 16, count, key)
+        </div>
+    </div>
+    <div id="sh_rec">
+        <div id="rec_nav">
+            <ul>
+                <a href="#"><li>热门推荐</li></a>
+            </ul>
+        </div>
+        <div>
+            @{List<WLXK.SecondHand.Model.Goods> goods = ViewData["SlideSales"] as List<WLXK.SecondHand.Model.Goods>;}
+            @if (goods.Count() > 0)
+            {
+                foreach (var item in goods)
+                {
+                    <div class="rec_list">
+                        <div class="rec_sh_all">
+                            <div class="rec_sh_img">
+                                <a href="/Home/ShowGoods/@item.Id"><img src="@item.SmallImageAddress" height="188" /></a>
+                            </div>
+                            <div class="rec_sh_foot">
+                                <div class="rec_sh_jiage">
+                                    约 <span class="rec_price_sign">￥</span>
+                                    <span class="rec_price_sign">@item.Price</span>
+                                    <span class="rec_price_count">
+                                        浏览量：<span>@item.SeeCount</span>
+                                    </span>
+                                </div>
+                                <div class="rec_sh_a">
+                                    <a href="/Home/ShowGoods/@item.Id">
+                                        @if (item.Title.Length >= 22)
+                                        {
+                                            @item.Title.Substring(0, 22)
+                                        }
+                                        else
+                                        {
+                                            @item.Title
+                                        }
+                                    </a>
+                                </div>
+                                <div class="rec_hot">
+                                    <a href="/Home/ShowGoods/@item.Id">热卖商品</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<!--侧边栏-->
+<div id="sideer">
+    <a href="#"><img id="gotoindex" src="/Content/images/gotoindex.png" /></a>
+    <a href="/Others/Suggest"><img id="fankui" src="~/Content/images/goto_fankui.png" /></a>
+</div>

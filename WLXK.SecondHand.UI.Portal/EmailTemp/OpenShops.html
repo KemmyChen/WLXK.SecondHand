@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style type="text/css">
+        table tr td {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h2>基本信息</h2>
+    <table>
+        <tr>
+            <td>真实姓名</td>
+            <td>身份证号码</td>
+            <td>所在班级</td>
+            <td>学生证图片</td>
+        </tr>
+        <tr>
+            <td>@RealName</td>
+            <td>@IdCard</td>
+            <td>@ClassName</td>
+            <td>
+                <img border="0" height="200" width="200" src="@imgsrc" />
+            </td>
+        </tr>
+    </table>
+    <a href="@website/Admin/AllowOpenShops/@ids">允许开店</a>
+    <a href="@website/Admin/RefuseOpenShops/@ids">拒绝开店</a>
+</body>
+</html>

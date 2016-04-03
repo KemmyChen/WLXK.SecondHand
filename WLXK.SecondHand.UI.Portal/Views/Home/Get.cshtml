@@ -1,0 +1,200 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>失物招领</title>
+    <!-- Bootstrap -->
+    <link href="/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style type="text/css">
+        body {
+            padding-bottom: 70px;
+        }
+
+        #table {
+            margin-top: 8px;
+            margin-bottom: 0px;
+            border-bottom: 1px solid #DDDDDD;
+        }
+
+            #table a:link {
+                font-size: 14px;
+            }
+
+            #table tr {
+                height: 40px;
+            }
+
+                #table tr td {
+                    line-height: 40px;
+                }
+
+
+        #fenye {
+            height: 50px;
+        }
+
+        a:link, a:hover, a:visited {
+            color: #337AB7;
+        }
+
+        #load {
+            text-align: center;
+        }
+    </style>
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <nav class="navbar navbar-default" style="margin-bottom:5px;">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/Home/Get">失物招领</a>
+            </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <ol class="breadcrumb" style="background:#FFF;">
+        <li><a href="/Home/Index">青职二货街</a></li>
+        <li><a href="/Home/Get">失物招领</a></li>
+        <li class="active">最新招领</li>
+    </ol>
+
+    <div class="container-fluid">
+        <div class="row">
+            <ul class="nav nav-tabs" id="shangmian">
+                <li role="presentation" class="active"><a href="/Home/Get" class="">招领启事</a></li>
+                <li role="presentation"><a href="/Home/Find">寻物启事</a></li>
+            </ul>
+        </div>
+        <div class="row">
+            <table id="table" class="table table-striped table-hover">
+                @{List<WLXK.SecondHand.Model.ShiWu> list = ViewData["list"] as List<WLXK.SecondHand.Model.ShiWu>;}
+                @foreach (var item in list)
+                {
+                    <tr>
+                        <td><a href="/Home/Show/@item.Id">@item.Title</a></td>
+                        <td>@item.SubTime</td>
+                    </tr>
+                }
+                @foreach (var item in list)
+                {
+                    <tr>
+                        <td><a href="/Home/Show/@item.Id">@item.Title</a></td>
+                        <td>@item.SubTime</td>
+                    </tr>
+                }
+                @foreach (var item in list)
+                {
+                    <tr>
+                        <td><a href="/Home/Show/@item.Id">@item.Title</a></td>
+                        <td>@item.SubTime</td>
+                    </tr>
+                }
+
+            </table>
+            <img id="load" class="col-xs-2 col-xs-offset-4" src="/Content/images/ico_loading.gif" />
+        </div>
+        <div class="row" style="margin-top:20px; text-align:center;">
+            <div class="col-lg-8 col-lg-offset-2">
+                Copyright©2015  <a href="http://www.qingzhi2shou.com">青职二货街</a>研发小组 版权所有
+                <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1255314121'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255314121%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="row" style="text-align:center">
+                <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                    <a class="navbar-brand" href="/Home/Get">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                        <span style="font-size:12px;">刷新</span>
+                    </a>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                    <a class="navbar-brand" href="/Home/AddSales/1">
+                        <span class="glyphicon glyphicon-cloud-download"></span>
+                        <span style="font-size:12px;">招领</span>
+                    </a>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                    <a class="navbar-brand" href="/Home/AddSales/0">
+                        <span class="glyphicon glyphicon-cloud-upload"></span>
+                        <span style="font-size:12px;">寻物</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/Content/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#load").css("display", "none");
+
+            var j = 0;
+
+            var i = 2
+            window.onscroll = isScrollDown;
+            function isScrollDown() {
+                var h_d, h_v, h_s;
+                h_d = document.body.scrollHeight;//文档高度
+                h_v = document.documentElement.clientHeight;//可视区域高度
+                h_s = document.body.scrollTop || document.documentElement.scrollTop;//被卷上去的高度
+                if (h_v + h_s == h_d) {
+                    $("#load").css("display", "block");
+                    addAjax();
+                    i++;
+                }
+            }
+            function addAjax() {
+                var aj_num = 10;//设置每次添加的数量
+                $.post("/Home/GetMsg", { "pageindex": i, "type": 0 }, function (data) {
+                    $("#load").css("display", "none");
+
+                    if (data.length == 0) {
+
+                        if (j == 0) {
+                            var tr = '<tr><td>已没有更多了！</td><td></td></tr>';
+                            $("#table").append(tr);
+                        }
+                        j++;
+                    }
+                    else {
+
+                        for (var i = 0; i < data.length; i++) {
+                            var dates = data[i].SubTime.replace(/\/Date\((\d+)\)\//gi, '$1')
+
+                            var number = Number(dates);
+                            //根据数字303148800000,创建一个日期对象
+                            var time = new Date(number);
+                            //var dateStr = new Date(number).toLocaleDateString() + new Date(number).toLocaleTimeString();
+                            var dateStr = time.pattern('yyyy-MM-dd HH:mm:ss');
+
+                            var tr = '<tr><td><a href="/Home/Show/' + data[i].Id + '">' + data[i].Title + '</a></td><td>' + dateStr + '</td></tr>';
+                            $("#table").append(tr);
+                        }
+                    }
+                })
+            }
+        })
+    </script>
+
+</body>
+</html>

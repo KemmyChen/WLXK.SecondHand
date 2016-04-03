@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WLXK.SecondHand.Model.UserInfo>
+@{
+    ViewBag.Title = "用户管理";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+@section Header{
+    <style type="text/css">
+        td {
+            width: 120px;
+        }
+    </style>
+
+}
+<p>
+    @Html.ActionLink("新建用户", "Create")
+</p>
+<table style="text-align:center;" border="1">
+    <tr>
+        <th>
+            用户ID
+        </th>
+        <th>
+            用户名
+        </th>
+        <th>
+            邮箱
+        </th>
+        <th>
+            创建时间
+        </th>
+        <th>操作</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTime)
+            </td>
+            <td>
+                @Html.ActionLink("编辑", "Edit", new { id = item.Id }) | 
+                @Html.ActionLink("删除", "DeleteUser", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

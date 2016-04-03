@@ -1,0 +1,109 @@
+﻿@model WLXK.SecondHand.Model.UserInfo
+
+@{
+    ViewBag.Title = "我的个人主页";
+    Layout = "~/Views/Shared/order/_LayoutOrderHome.cshtml";
+}
+@section Header{
+    <link href="~/Content/css/orderhome.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $('#six4').click(function () {
+                window.location.href = "/OrderCenter/Home?pageindex=" + Math.round(Math.random() * 10);
+            })
+            $('#seven1').click(function () {
+                window.location.href = "/OrderCenter/Home?pageindex=" + Math.round(Math.random() * 10);
+            })
+        })
+    </script>
+
+}
+@{WLXK.SecondHand.Model.UserInfoExt ext = ViewData["userext"] as WLXK.SecondHand.Model.UserInfoExt;}
+<div id="boss">
+    <div id="middle">
+        <div id="five1">
+            <table style="padding-left:10px;padding-top:3px;">
+                <tr>
+                    <td colspan="3">
+                        <div id="five2">
+                            <a href="/OrderCenter/Home"><img src="@ext.TouXiang" height="60" width="60" style="border-radius:60px;" /></a>
+                        </div>
+                        <div id="five3">
+                            <a href="/OrderCenter/Home">@ext.NickName（@Model.Uid）</a>
+                        </div>
+                    </td>
+                    <td width="136px">
+                        <a href="/OrderCenter/MyInfoUp">修改资料</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="five6">
+            <table>
+                @{string weidu = ViewData["weiduNews"].ToString();}
+            <tr>
+                <td width="144px" align="center"><a href="/OrderCenter/AddGoods">发布物品</a></td>
+                <td>|</td>
+                <td width="144px" align="center"><a href="/OrderCenter/ShowGoods">我的物品</a></td>
+                <td>|</td>
+                <td width="144px" align="center"><a href="/OrderCenter/MyNews">我的消息(<font color="red" size="3">@weidu</font>)</a></td>
+                <td>|</td>
+                <td width="144px" align="center"><a href="/Home/Index">去转转</a></td>
+                <td>|</td>
+                <td width="144px" align="center"><a href="/Others/Suggest">建议</a></td>
+            </tr>
+
+        </table>
+    </div>
+    <div id="six1">
+        <table>
+            <tr>
+                <td width="10px"> </td>
+                <td id="six2" width="620px">根据浏览 猜我喜欢</td>
+                <td width="30px" align="left">
+                    <input id="six4" type="submit" value="换一组" />
+                </td>
+                <td width="20"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="six5">
+        @{IQueryable<WLXK.SecondHand.Model.Goods> goods = ViewData["RandGoods"] as IQueryable<WLXK.SecondHand.Model.Goods>; }
+
+        @foreach (WLXK.SecondHand.Model.Goods item in goods)
+        {
+            <div class="list">
+                <div class="sh_all">
+                    <div class="sh_img">
+                        <a href="/Home/ShowGoods/@item.Id"><img src="@item.SmallImageAddress" height="188" /></a>
+                    </div>
+                    <div class="sh_foot">
+                        <div class="sh_a">
+                            <a href="/Home/ShowGoods/@item.Id">@item.Title</a>
+                        </div>
+                        <div class="sh_jiage">
+                            约 <span class="price_sign">￥</span>
+                            <span class="price_sign">@item.Price</span>
+                            <span class="price_count">
+                                浏览量：<span>@item.SeeCount</span>
+                            </span>
+                        </div>
+                        <div class="sh_pingjia">
+                            <a href="/Home/ShowGoods/@item.Id">查看评价</a>
+                        </div>
+                        <div class="sh_info">
+                            <a href="/Home/ShowGoods/@item.Id">查看店铺</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div id="seven">
+        <input id="seven1" type="submit" value="换一组" />
+    </div>
+    <div id="eight2">
+        <font id="seven4">想看更多的宝贝，就去<a href="/Home/Index" id="shouye">首页</a>看看</font>
+    </div>
+</div>
+</div>

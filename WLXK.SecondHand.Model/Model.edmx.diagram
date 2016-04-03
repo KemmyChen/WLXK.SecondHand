@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1f3f168e37d14c8499238d13962e7812" Name="Diagram1">
+        <EntityTypeShape EntityType="qtcSecondHandModel.UserInfo" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="qtcSecondHandModel.Goods" Width="1.5" PointX="7.5" PointY="5.375" />
+        <EntityTypeShape EntityType="qtcSecondHandModel.SaleInfo" Width="1.5" PointX="9.75" PointY="6.5" />
+        <AssociationConnector Association="qtcSecondHandModel.UserInfoGoods" />
+        <AssociationConnector Association="qtcSecondHandModel.GoodsSaleInfo" />
+        <EntityTypeShape EntityType="qtcSecondHandModel.Shoping" Width="1.5" PointX="5.25" PointY="7.625" />
+        <AssociationConnector Association="qtcSecondHandModel.UserInfoShoping" />
+        <AssociationConnector Association="qtcSecondHandModel.ShopingGoods" />
+        <EntityTypeShape EntityType="qtcSecondHandModel.UserInfoExt" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="qtcSecondHandModel.MySee" Width="1.5" PointX="6.5" PointY="2" />
+        <AssociationConnector Association="qtcSecondHandModel.UserInfoMySee" />
+        <AssociationConnector Association="qtcSecondHandModel.GoodsMySee" />
+        <EntityTypeShape EntityType="qtcSecondHandModel.Suggest" Width="1.5" PointX="0.875" PointY="7" />
+        <EntityTypeShape EntityType="qtcSecondHandModel.ListShops" Width="1.5" PointX="0.875" PointY="10.625" />
+        <EntityTypeShape EntityType="qtcSecondHandModel.MyNews" Width="1.5" PointX="0.75" PointY="4.25" />
+        <AssociationConnector Association="qtcSecondHandModel.MyNewsUserInfo" />
+        <EntityTypeShape EntityType="qtcSecondHandModel.AdminUser" Width="1.5" PointX="2.875" PointY="7.5" />
+        <EntityTypeShape EntityType="qtcSecondHandModel.ShiWu" Width="1.5" PointX="4" PointY="10" />
+        <EntityTypeShape EntityType="qtcSecondHandModel.FriendLink" Width="1.5" PointX="4.25" PointY="14" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

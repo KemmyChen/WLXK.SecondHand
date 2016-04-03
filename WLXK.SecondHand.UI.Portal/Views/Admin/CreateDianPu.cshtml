@@ -1,0 +1,85 @@
+﻿@model WLXK.SecondHand.Model.ListShops
+
+@{
+    ViewBag.Title = "创建店铺";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+@section Header{
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>创建店铺</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SubTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SubTime)
+            @Html.ValidationMessageFor(model => model.SubTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserInfoId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserInfoId)
+            @Html.ValidationMessageFor(model => model.UserInfoId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Status)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Status)
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RealName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RealName)
+            @Html.ValidationMessageFor(model => model.RealName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdCard)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IdCard)
+            @Html.ValidationMessageFor(model => model.IdCard)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CardAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CardAddress)
+            @Html.ValidationMessageFor(model => model.CardAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CalssName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CalssName)
+            @Html.ValidationMessageFor(model => model.CalssName)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "重置密码|青职二货街";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+@section Header{
+    <link href="/Content/css/Account/ReGetPwd.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.8.2.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/Scripts/Account/ReGetPwd.js"></script>
+}
+@section BigTitle{
+    安全中心
+}
+@section SmallTitle{
+    重置密码
+}
+
+
+@using (Ajax.BeginForm("ReGetPwd", new AjaxOptions() { OnSuccess = "AfterSuccess" }))
+{
+    @*<form action="/account/GetRePwd" method="post" onsubmit="return CheckFrom();">*@
+    <h4>请重新设置您的密码</h4>
+    <input type="hidden" name="Uid" value="@ViewData["UserName"]" />
+    <div class="one_form">
+        <span class="user_info">密码：</span>
+        <input class="user_input" type="password" value="" id="pwd1" name="Pwd1" maxlength="20" />
+        <div class="user_msg" id="pwd1msg">6-20位字符,建议由字母,符号,数字两种以上组合</div>
+        <table id="tabpwd" border="0">
+            <tr>
+                <td id="one">弱</td>
+                <td id="two">中</td>
+                <td id="three">强</td>
+            </tr>
+        </table>
+    </div>
+    <div class="one_form">
+        <span class="user_info">确认密码：</span>
+        <input class="user_input" type="password" value="" id="pwd2" name="Pwd2" maxlength="20" />
+        <div class="user_msg" id="pwd2msg">请再次输入密码</div>
+    </div>
+    <div class="one_form">
+        <span class="user_info">验证码：</span>
+        <input class="user_input" style="width:170px;" type="text" value="" name="code" />
+        <div style="height:42px;line-height:42px;margin-left:10px;margin-top:8px;width:80px;float:left;"><img style="cursor:pointer" id="vaildPic" src="GetValidateCode" alt="" width="70" /></div><a id="dont" style="font-size:12px;color:blue;margin-top:17px;display:block;height:14px;width:50px;cursor:pointer;float:left;">看不清</a>
+    </div>
+    <div class="one_form">
+        <input class="user_input" id="user_submit" type="submit" value="重置密码" />
+        <span style="color: red; font-size: 14px;"></span>
+    </div>
+    @*</form>*@
+}
+<div id="reg_weixin">
+</div>

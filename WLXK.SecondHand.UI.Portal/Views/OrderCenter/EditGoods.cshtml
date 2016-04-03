@@ -1,0 +1,178 @@
+﻿@model WLXK.SecondHand.Model.Goods
+
+@{
+    ViewBag.Title = "编辑商品";
+    Layout = "~/Views/Shared/order/_LayoutSaleCenter.cshtml";
+}
+@section Header{
+    <script src="/Scripts/jquery-1.8.2.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="/Scripts/MyAjaxForm.js"></script>
+    <script src="/Scripts/jquery.validate.js"></script>
+    <link href="/Content/css/GoodsAE.css" rel="stylesheet" />
+    <script src="/Scripts/GoodAE.js"></script>
+    <script type="text/javascript">
+
+        //表单提交之后的动作
+        function afterSuccess(data) {
+            alert(data);
+            if (data == "ok") {
+            }
+            else {
+                alert(data);
+            }
+        };
+    </script>
+
+
+}
+@ViewData["Message"]
+@using (Ajax.BeginForm("EditGoods", new AjaxOptions() { OnSuccess = "afterSuccess" }))
+{
+    <input type="hidden" name="ShopingId" value="@Model.ShopingId" />
+    <input type="hidden" name="GoodId" value="@Model.Id" />
+    <div id="sale_bd">
+        <div class="sale_title">1.宝贝基本信息</div>
+        <div class="sale_cont">
+            <div style="float:left;margin-right:40px;">宝贝类型:</div>
+            <div class="sale_value">
+                <select name="Type" id="del_type">
+                    @if (Model.Type == -1)
+                    {
+                        <option value="-1" selected="selected">请选择...</option>
+                    }
+                    else
+                    {
+                        <option value="-1">请选择...</option>
+                    }
+
+                    @if (Model.Type == 10)
+                    {
+                        <option value="10" selected="selected">全新</option>
+                    }
+                    else
+                    {
+                        <option value="10">全新</option>
+                    }
+
+                    @if (Model.Type == 9)
+                    {
+                        <option value="9" selected="selected">九成新</option>
+                    }
+                    else
+                    {
+                        <option value="9">九成新</option>
+                    }
+
+                    @if (Model.Type == 8)
+                    {
+                        <option value="8" selected="selected">八成新</option>
+                    }
+                    else
+                    {
+                        <option value="8">八成新</option>
+                    }
+
+                    @if (Model.Type == 7)
+                    {
+                        <option value="7" selected="selected">七成新</option>
+                    }
+                    else
+                    {
+                        <option value="7">七成新</option>
+                    }
+
+                    @if (Model.Type == 6)
+                    {
+                        <option value="6" selected="selected">六成新</option>
+                    }
+                    else
+                    {
+                        <option value="6">六成新</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="sale_cont">
+            <div style="float:left;margin-right:40px;">宝贝标题:</div>
+            <div class="sale_value">
+                <input type="text" name="Title" value="@Model.Title" />
+            </div>
+        </div>
+        <div class="sale_cont">
+            <div style="float:left;margin-right:40px;">宝贝卖点:</div>
+            <div class="sale_value">
+                <textarea class="text" name="MaiDian" style="width:400px;height:100px;">@Model.MaiDian</textarea>
+            </div>
+        </div>
+        <div class="sale_cont">
+            <div style="float:left;margin-right:40px;">宝贝价格:</div>
+            <div class="sale_value">
+                <input type="text" name="Price" value="@Model.Price" />
+            </div>
+        </div>
+        <div class="sale_cont">
+            <div style="float:left;margin-right:40px;">宝贝数量:</div>
+            <div class="sale_value">
+                <input type="text" name="Count" value="@Model.Count" />
+            </div>
+        </div>
+        <div class="sale_cont">
+            <div style="float:left;margin-right:40px;">宝贝来源:</div>
+            <div class="sale_value">
+                <input type="text" name="LaiYuan" value="@Model.LaiYuan" />
+            </div>
+        </div>
+        <div class="sale_cont">
+            <div style="float:left;margin-right:40px;">宝贝图片:</div>
+            <div class="sale_value">
+                <input type="file" name="images" id="fileupload" /><input type="button" value="上传" id="btnUpload" />
+            </div>
+            <input id="smallimage" type="hidden" name="SmallImageAddress" value="@Model.SmallImageAddress" />
+            <input id="bigimage" type="hidden" name="BigImageAddress" value="@Model.BigImageAddress" />
+            <div id="">
+                <img style="display:block;" id="suolvetu" src="@Model.SmallImageAddress" alt="商品图片" />
+                <img id="suolvetu1" src="@Model.SmallImageAddress" alt="商品图片" />
+            </div>
+        </div>
+        <div class="sale_cont">
+            <div style="float:left;margin-right:40px;">宝贝描述:</div>
+            <div class="sale_value">
+                <textarea class="text" name="Descript" style="width:400px;height:100px;">@Model.Descript</textarea>
+            </div>
+        </div>
+
+        @{WLXK.SecondHand.Model.SaleInfo sale = ViewBag.Sale as WLXK.SecondHand.Model.SaleInfo;}
+
+        <input type="hidden" name="SaleId" value="@sale.Id" />
+        <div class="sale_title">2.掌柜联系方式</div>
+        <div class="sale_cont">
+            <div style="float:left;margin-right:40px;">真实姓名:</div>
+            <div class="sale_value">
+                <input type="text" name="RealName" value="@sale.RealName" />
+            </div>
+        </div>
+        <div class="sale_cont">
+            <div style="float:left;margin-right:40px;">QQ:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="sale_value">
+                <input type="text" name="QQ" value="@sale.QQ" />
+            </div>
+        </div>
+        <div class="sale_cont">
+            <div style="float:left;margin-right:40px;">手机号:&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="sale_value">
+                <input type="text" name="PhoneNum" value="@sale.PhoneNum" />
+            </div>
+        </div>
+        <div class="sale_cont">
+            <div style="float:left;margin-right:40px;">住&nbsp;&nbsp;&nbsp;&nbsp;址:&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="sale_value">
+                <input type="text" name="Address" value="@sale.Address" />
+            </div>
+        </div>
+    </div>
+    <div id="fabu">
+        <input id="btnfabu" type="submit" name="name" value="更新" />
+    </div>
+}
+

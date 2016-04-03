@@ -1,0 +1,176 @@
+﻿@{
+    //ViewBag.Title = "ShowGoods";
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+}
+@section Header{
+    <link href="/Content/css/Home/ShowGoods.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="/Scripts/Home/ShowGoods.js"></script>
+}
+@{WLXK.SecondHand.Model.Goods good = ViewData["Goods"] as WLXK.SecondHand.Model.Goods;
+WLXK.SecondHand.Model.SaleInfo sale = ViewData["SaleInfo"] as WLXK.SecondHand.Model.SaleInfo;
+List<WLXK.SecondHand.Model.Goods> listabout = ViewData["AboutGoods"] as List<WLXK.SecondHand.Model.Goods>;
+}
+<input type="hidden" id="GoodId" value="@good.Id" />
+@if (Session["model"] != null)
+{
+    WLXK.SecondHand.Model.UserInfo user = Session["model"] as WLXK.SecondHand.Model.UserInfo;
+    <input type="hidden" id="UserId" value="@user.Id" />
+}
+else
+{
+    <input type="hidden" id="UserId" value="" />
+}
+<div class="Midall">
+    <div class="Midtop">
+        <div class="Midtop1">
+            <div class="Midtop11">
+                <div class="Mt11-img">
+                    <a href="/Home/ShowGoods/@good.Id"><img src="@good.SmallImageAddress" style="height:370px; width:370px;" /></a>
+                </div>
+                <div class="Mt11-info">
+                    <h3 style="font-size: 16px;font-weight: 700;line-height: 21px;color: #3C3C3C; margin:10px 0px 0px 10px;">@good.Title</h3>
+                    <ul style="padding: 10px;background-color:#FFF2E8; width:480px; height:40px;margin:10px 0px 0px 10px;">
+                        <div style=" height:65px; width:255px; float:left;">
+                            <li style="width: 350px;margin-bottom: 5px;"><span style="margin-top: 12px;float: left;color: #6c6c6c; font-size:12px;font-family: verdana,arial;">单价</span> </li>
+                            <li>
+                                <span style="color:#FF4400; font-size:26px; margin-left:40px;font-family: verdana,arial;font-weight: 700;">¥@good.Price</span>
+                                <span style="padding: 0 4px;height: 18px;line-height: 18px;color: #FFF;
+font-size:14px;">&nbsp;</span>
+                            </li>
+                        </div>
+                        <div style="height:45px; width:135px; float:right; ">
+                            <div style="height:42px; width:66px; float:left;">
+                                <strong style="display: block;font-size: 16px;font-weight: 800;color: #6C6C6C;text-align:center;">&nbsp;</strong>
+                                <span style="display: block;font-size: 12px;font-weight: 400;line-height: 18px;color: #6C6C6C;text-align:center;">&nbsp;</span>
+                            </div>
+                            <div style="height:42px; width:66px; float:right; ">
+                                <span style="display: block;font-size: 16px;font-weight:bold;color: #6C6C6C;text-align:center;">
+                                    @good.SeeCount
+                                </span>
+                                <span style="display: block;font-size: 12px;font-weight: 400;line-height: 18px;color: #6C6C6C;text-align:center;">热度</span>
+                            </div>
+                        </div>
+                    </ul>
+                    <ul><li><div style=" float:left; margin-top:10px; font-size: 12px;color: #3c3c3c;height: 23px; line-height:23px; ">&nbsp;</div></li></ul>
+                    <div class="Mt11-info-send">
+                        <div style="height:279px;">
+                            <div style="height:54px;text-align:left;clear:both;">
+                                <span style=" display:block; float:left;font-size:12px;color: #6c6c6c;line-height:24px;  margin-top:15px; ">&nbsp;宝贝类型</span>
+                                <div class="Mt11-info-class">
+                                    @if (good.Type == 10)
+                                    {
+                                        <span>全新</span>
+                                    }
+                                    else if (good.Type == 9)
+                                    {
+                                        <span>九成新</span>
+                                    }
+                                    else if (good.Type == 8)
+                                    {
+                                        <span>八成新</span>
+                                    }
+                                    else if (good.Type == 7)
+                                    {
+                                        <span>七成新</span>
+                                    }
+                                    else if (good.Type == 6)
+                                    {
+                                        <span>六成新</span>
+                                    }
+                                    else
+                                    {
+                                        <span>废旧商品</span>
+                                    }
+                                </div>
+                            </div>
+                            <div style="height:54px;">
+                                <span style=" display:block; float:left;font-size:12px;color: #6c6c6c;line-height:24px;  margin-top:15px; ">&nbsp;我的地址</span>
+                                <div class="Mt11-info-class">@sale.Address</div>
+                            </div>
+                            <div style="height:54px;">
+                                <span style=" display:block; float:left;font-size:12px;color: #6c6c6c;line-height:24px;  margin-top:15px; ">&nbsp;我的姓名</span>
+                                <div class="Mt11-info-class">@sale.RealName</div>
+                            </div>
+                            <div style=" height:54px;">
+                                <span style=" display:block; float:left;font-size:12px;color: #6c6c6c;line-height:24px;  margin-top:15px; ">&nbsp;商品来源</span>
+                                <div class="Mt11-info-class">@good.LaiYuan</div>
+                            </div>
+                            <div style="height:54px;">
+                                <span style=" display:block; float:left;font-size:12px;color: #6c6c6c;line-height:24px;  margin-top:15px; ">&nbsp;库存数量</span>
+                                <div class="Mt11-info-class">@good.Count</div>
+                            </div>
+                            <div style=" float:left;width:510px; height:40px; margin-top:20px;">
+                                <a href="tencent://message/?uin=@sale.QQ&Site=青职二货街客服&Menu=yes">
+                                    <input type="submit" value="联系购买" class="buy" style="cursor:pointer;" />
+                                </a>
+                                <input type="submit" value="加入收藏夹" id="addShoucang" style="cursor:pointer;" class="buycar" />
+                            </div>
+                            <div style="width:480px; height:94px; float:left; margin-top:10px;">
+                                <ul>
+                                    <li style="float: left;position: relative;margin-right: 20px;height: 22px;line-height: 22px;margin-top:20px; font-size:12px; color:#6C6C6C;
+ margin-left:40px; "><a target="_blank" href="http://v.t.sina.com.cn/share/share.php?title=我在青职二货街发现了一份好物品，分享给大家看看吧！-青职二货街，青职学院闲置交易平台，为您提供最优质的服务。&url=@WLXK.SecondHand.Common.CommonHelper.GetWebSite()/Home/ShowGoods/@good.Id"><img height="20" src="/Content/images/weibo.jpg" />分享</a></li>
+                                    <li style="float: left; position: relative; margin-right: 70px; height: 22px; line-height: 22px; margin-top: 20px; font-size: 12px; color: #6C6C6C; ">
+                                        <a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=@WLXK.SecondHand.Common.CommonHelper.GetWebSite()/Home/ShowGoods/@good.Id" target="_blank">
+                                            <img height="20" src="/Content/images/qzone.jpg" />分享
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width:200px; height:540px; float:left; margin-top:-613px; ">
+                <div style="width: 168px; height: 70px; margin: auto; border-bottom: 2px solid #E8E8E8;margin-bottom:10px;">
+                    <strong style=" font-size:14px;">店铺相关</strong>
+                    <dl>
+                        <dt class="right-font" style="margin-left:20px;">&nbsp;<a href="tencent://message/?uin=@sale.QQ&Site=青职二货街客服&Menu=yes"><img src="/Content/images/qqtubiao.jpg" height="20" />在线联系</a></dt>
+                    </dl>
+                </div>
+                <div style="width:200px; height:259px; ">
+                    <strong style=" font-size:14px; margin-left:15px;margin-top:10px;">看了又看</strong>
+                    <ul style=" width:172px; height:242px; margin:auto;">
+
+                        @for (int i = 0; i < listabout.Count(); i++)
+                        {
+                            if (i % 2 == 0)
+                            {
+                                <li>
+                                    <a href="/Home/ShowGoods/@listabout[i].Id">
+                                        <img src="@listabout[i].SmallImageAddress" style="width: 80px;height: 80px;
+line-height: 80px; margin-top:15px; float:left; margin-right:10px;" />
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="/Home/ShowGoods/@listabout[i].Id">
+                                        <img src="@listabout[i].SmallImageAddress" style="width: 80px;height: 80px;
+line-height: 80px; margin-top:15px; float:left;" />
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="width:1140px; height:46px;border: 1px solid #E5E5E5;background: #F4F4F4;margin-top:20px;">
+            <div class="details">商品图片</div>
+        </div>
+        <div style="width:1140px;clear:both;float:left;color:#000;font-size:14px;">
+            <img style="margin-left:100px;" src="@good.BigImageAddress" width="800" height="500" alt="青职二手市场商品图片" />
+            <div style="width:1140px; height:46px;border: 1px solid #E5E5E5;background: #F4F4F4;">
+                <div class="details">商品特点</div>
+            </div>
+            <div style="margin:10px;font-size:16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@good.MaiDian</div>
+            <div style="width:1140px; height:46px;border: 1px solid #E5E5E5;background: #F4F4F4;">
+                <div class="details">商品详细描述</div>
+            </div>
+            <div style="margin:10px;font-size:16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@good.Descript</div>
+        </div>
+    </div>
+</div>
+<a href="http://www.qingzhi2shou.com">青职二货街</a><a href="http://www.qingzhi2shou.com">青职二手</a><a href="http://www.qingzhi2shou.com">校园二手</a>

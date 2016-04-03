@@ -1,0 +1,185 @@
+﻿@{
+    ViewBag.Title = "发布宝贝|青职二货街";
+    Layout = "~/Views/Shared/order/_LayoutSaleCenter.cshtml";
+}
+@section Header{
+    <script src="/Scripts/jquery-1.8.2.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+    @*<script src="/Scripts/MyAjaxForm.js"></script>*@
+    <script src="/Scripts/jquery.validate.js"></script>
+    <link href="/Content/css/GoodsAE.css" rel="stylesheet" />
+    <script src="/Scripts/GoodAE.js"></script>
+    <script type="text/javascript">
+
+        //表单提交之后的动作
+        function afterSuccess(data) {
+            if (data == "ok") {
+                alert("商品添加成功");
+            }
+            else {
+                alert(data);
+            }
+        };
+
+    </script>
+    <script src="/Scripts/ajaxfileupload.js"></script>
+    <script type="text/javascript">
+
+        function uploadimg() {
+            if ($("#fileupload").val().length > 0) {
+                ajaxFileUpload();
+            }
+            else {
+                alert("请选择图片");
+            }
+        }
+        function ajaxFileUpload() {
+            $.ajaxFileUpload
+            (
+                {
+                    url: '/ashx/Upload.ashx', //用于文件上传的服务器端请求地址
+                    secureuri: false, //一般设置为false
+                    fileElementId: 'fileupload', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+                    dataType: 'text', //返回值类型 一般设置为json
+                    success: function (data, status)  //服务器成功响应处理函数
+                    {
+                        //<pre style="word-wrap: break-word; white-space: pre-wrap;">1</pre>
+                        var msgs =data.split('>');
+                        var splits = msgs[1].split('<');
+
+                        if (splits[0] == "1")
+                        {
+                            alert("图片大小不要大于500kb哦");
+                            return;
+                        }
+
+                        var attr = data.split('|');
+                        var msg = attr[0].split('>');
+
+                        $("#suolvetu").css("display", "block");
+                        $("#suolvetu").attr("src", msg[1]);
+                        $("#bigimage").val(msg[1]);
+                        var small = attr[1].split('<');
+                        $("#smallimage").val(small[0]);
+                        if (typeof (data.error) != 'undefined') {
+                            if (data.error != '') {
+                                alert(data.error);
+                            } else {
+                                alert(data.msg);
+                            }
+                        }
+                    },
+                    error: function (data, status, e)//服务器响应失败处理函数
+                    {
+                        alert(e);
+                    }
+                }
+            )
+            return false;
+        }
+    </script>
+}
+
+@{string message = ViewData["message"].ToString();}
+@if (message == "1")
+{
+    using (Ajax.BeginForm("AddGoods", new AjaxOptions() { OnSuccess = "afterSuccess" }))
+    {
+        <div id="sale_bd">
+            <div class="sale_title">1.宝贝基本信息</div>
+            <div class="sale_cont">
+                <div style="float:left;margin-right:40px;">宝贝类型:</div>
+                <div class="sale_value">
+                    <select name="Type" id="del_type">
+                        <option value="-1">请选择...</option>
+                        <option value="10">全新</option>
+                        <option value="9">九成新</option>
+                        <option value="8">八成新</option>
+                        <option value="7">七成新</option>
+                        <option value="6">六成新</option>
+                        <option value="0">其他</option>
+                    </select>
+                </div>
+            </div>
+            <div class="sale_cont">
+                <div style="float:left;margin-right:40px;">宝贝标题:</div>
+                <div class="sale_value">
+                    <input id="title" type="text" name="Title" value="" />
+                </div>
+            </div>
+            <div class="sale_cont">
+                <div style="float:left;margin-right:40px;">宝贝卖点:</div>
+                <div class="sale_value">
+                    <textarea class="text" name="MaiDian" style="width:400px;height:100px;"></textarea>
+                </div>
+            </div>
+            <div class="sale_cont">
+                <div style="float:left;margin-right:40px;">宝贝价格:</div>
+                <div class="sale_value">
+                    <input type="text" name="Price" value="" />
+                </div>
+            </div>
+            <div class="sale_cont">
+                <div style="float:left;margin-right:40px;">宝贝数量:</div>
+                <div class="sale_value">
+                    <input type="text" name="Count" value="" />
+                </div>
+            </div>
+            <div class="sale_cont">
+                <div style="float:left;margin-right:40px;">宝贝来源:</div>
+                <div class="sale_value">
+                    <input type="text" name="LaiYuan" value="" />
+                </div>
+            </div>
+            <div class="sale_cont">
+                <div style="float:left;margin-right:40px;">宝贝图片:</div>
+                <div class="sale_value">
+                    <input type="file" name="images" id="fileupload" onchange="uploadimg()" />(图片大小不要大于500kb哦)
+                </div>
+                <input id="smallimage" type="hidden" name="SmallImageAddress" value="" />
+                <input id="bigimage" type="hidden" name="BigImageAddress" value="" />
+                <div id="">
+                    <img id="suolvetu" width="400" src="" alt="商品图片" />
+                </div>
+            </div>
+            <div class="sale_cont">
+                <div style="float:left;margin-right:40px;">宝贝描述:</div>
+                <div class="sale_value">
+                    <textarea class="text" name="Descript" style="width:400px;height:100px;"></textarea>
+                </div>
+            </div>
+            <div class="sale_title">2.掌柜联系方式</div>
+            <div class="sale_cont">
+                <div style="float:left;margin-right:40px;">真实姓名:</div>
+                <div class="sale_value">
+                    <input type="text" name="RealName" value="" />
+                </div>
+            </div>
+            <div class="sale_cont">
+                <div style="float:left;margin-right:40px;">QQ:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                <div class="sale_value">
+                    <input type="text" name="QQ" value="" />
+                </div>
+            </div>
+            <div class="sale_cont">
+                <div style="float:left;margin-right:40px;">手机号:&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                <div class="sale_value">
+                    <input type="text" name="PhoneNum" value="" />
+                </div>
+            </div>
+            <div class="sale_cont">
+                <div style="float:left;margin-right:40px;">住&nbsp;&nbsp;&nbsp;&nbsp;址:&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                <div class="sale_value">
+                    <input type="text" name="Address" value="" />
+                </div>
+            </div>
+        </div>
+        <div id="fabu">
+            <input id="btnfabu" type="submit" name="name" value="发布" />
+        </div>
+    }
+}
+else
+{
+    <div style="background: #FEC0C1; border: 1px solid #FFF6BD; height:50px;">您还未开通店铺，请<a href="/Ordercenter/openshop">开通店铺</a></div>
+}

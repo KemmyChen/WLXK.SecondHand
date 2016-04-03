@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "青职二货街";
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+}
+@section Header{
+    <script src="/Scripts/jquery-1.8.2.js"></script>
+    <link href="/Content/css/Others/ShowMsg.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            var i = 5;
+            setInterval(function () {
+                i--;
+                if (i <= 0) {
+                    window.location.href = $('#goto').attr('href');;
+                }
+            }, 1000)
+        })
+    </script>
+}
+<div id="error">
+    <div id="error_bd">
+        <div id="errorimg">
+            <img src="/Content/images/success1.png" width="80" />
+        </div>
+        <div id="tishi">
+            <span id="errormsg">@ViewData["PointMsg"]</span>
+            <span id="ninkeyi">如果您不做出选择系统将自动跳转到<a id="goto" href="@ViewData["NewUrl"]">@ViewData["NewTitle"]</a></span>
+            <ul id="errorhelp">
+                <li><a href="@ViewData["OldUrl"]">>>  回到之前的页面</a></li>
+                <li><a href="/OrderCenter/Home">>>  去用户中心看看</a></li>
+                <li><a href="dianpu">>>  马上开店做生意</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

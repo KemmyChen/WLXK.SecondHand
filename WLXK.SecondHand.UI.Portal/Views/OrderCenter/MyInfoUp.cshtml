@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "个人资料管理";
+    Layout = "~/Views/Shared/order/_LayoutSetting.cshtml";
+}
+@section Header{
+    <link href="~/Content/css/MyInfoUp.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function onSuccess(data) {
+            alert(data);
+        }
+    </script>
+}
+@using (Ajax.BeginForm("MyInfoUp", new AjaxOptions() { OnSuccess = "onSuccess" }))
+{
+
+    <div id="rightbody">
+        <div id="four">
+            @{WLXK.SecondHand.Model.UserInfoExt userext = ViewData["MyInfo"] as WLXK.SecondHand.Model.UserInfoExt;}
+            <div id="six1">
+                &nbsp;&nbsp;&nbsp;<input type="hidden" name="Id" value="@userext.Id" />
+            </div>
+            <div id="six2">
+                &nbsp;&nbsp;&nbsp;基本资料&nbsp;&nbsp;&nbsp;
+            </div>
+            <br />
+            <table>
+                <tr>
+                    <td>&nbsp; &nbsp;亲爱的,填写真实的资料，有助于找到好友哦！</td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td height="18px"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp; &nbsp;当前头像：</td>
+                    <td>
+                        <img src="@userext.TouXiang" width="100" height="100" style="border-radius:100px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td height="18px"></td>
+                </tr>
+                <tr>
+                    <td>* 昵称：</td>
+                    <td width="350px">
+                        <input id="four1" type="text" name="NickName" value="@userext.NickName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td width="500px">
+                        <font color="gray">*昵称填写须知：请输入合法的用户名</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="18px"></td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp; &nbsp;真实姓名：
+                    </td>
+                    <td width="350px">
+                        <input id="four2" type="text" name="RealName" value="@userext.RealName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td height="18px"></td>
+                </tr>
+                <tr>
+                    <td>
+                        * 性别：
+                    </td>
+                    <td width="350px">
+                        @if (userext.Gender == 1)
+                        {
+                            <input type="radio" checked="checked" name="Gender" value="1" /><span>男&nbsp; &nbsp;</span>
+                            <input type="radio" name="Gender" value="0" /><span>女</span>
+                        }
+                        else
+                        {
+                            <input type="radio" name="Gender" value="1" /><span>男&nbsp; &nbsp;</span>
+                            <input type="radio" checked="checked" name="Gender" value="0" /><span>女</span>
+                        }
+
+                    </td>
+                </tr>
+                <tr>
+                    <td height="18px"></td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp; &nbsp;生日：
+                    </td>
+                    <td>
+                        <input type="date" name="Birthday" value="@userext.Birthday" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td height="18px"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp; &nbsp;居住地：</td>
+                    <td>
+                        <input type="text" name="Address" value="@userext.Address" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="fabu">
+            <input id="btnfabu" type="submit" name="name" value="更新" />
+        </div>
+    </div>
+}

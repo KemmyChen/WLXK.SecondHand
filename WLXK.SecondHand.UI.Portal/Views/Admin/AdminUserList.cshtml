@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WLXK.SecondHand.Model.AdminUser>
+
+@{
+    ViewBag.Title = "管理员列表";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+@section Header{
+
+}
+
+<h2>管理员列表</h2>
+<p>
+    @Html.ActionLink("新建管理员账户", "CreateAdminUser")
+</p>
+<table border="1">
+    @{WLXK.SecondHand.Model.AdminUser user = Session["adminlogin"] as WLXK.SecondHand.Model.AdminUser;}
+    <tr>
+        <th>
+            用户名
+        </th>
+        <th>
+            邮箱
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("编辑", "EditAdmin", new { id = item.Id }) |
+                @Html.ActionLink("删除", "DeleteAdmin", new { id = item.Id }) |
+                <a href="/Admin/LookDianPu/@item.Id">审核的店铺</a>
+            </td>
+        </tr>
+    }
+
+</table>

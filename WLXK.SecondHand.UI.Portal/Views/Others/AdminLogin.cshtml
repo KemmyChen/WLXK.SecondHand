@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body style="padding:200px;">
+    <form action="/Others/AdminLogin" method="post">
+        <input type="hidden" name="oldurl" value="@ViewData["oldurl"]" />
+        管理员账户<input type="text"  name="uid" /><br /><br />
+        管理员密码<input type="password"  name="pwd" /><br /><br />
+        <input type="submit" value="登录" />
+    </form>
+</body>
+</html>

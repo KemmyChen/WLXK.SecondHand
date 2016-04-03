@@ -1,0 +1,53 @@
+﻿@model WLXK.SecondHand.Model.AdminUser
+
+@{
+    ViewBag.Title = "编辑管理员信息";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+@section Header{
+
+}
+
+<h2>编辑管理员</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>编辑管理员</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Uid)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Uid)
+            @Html.ValidationMessageFor(model => model.Uid)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Pwd)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pwd)
+            @Html.ValidationMessageFor(model => model.Pwd)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <p>
+            <input type="submit" value="保存" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("回到管理员列表", "AdminUserList")
+</div>

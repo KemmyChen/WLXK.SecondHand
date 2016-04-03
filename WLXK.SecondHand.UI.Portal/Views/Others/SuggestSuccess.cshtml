@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "青职二货街-反馈成功";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+@section Header{
+    <link href="/Content/css/Others/SuggestSuccess.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            setInterval(function () {
+                var miao = $("#miao").html();
+
+                if (miao <= 0) {
+                    window.location.href = "/Home/Index";
+                }
+                miao--;
+                $("#miao").html(miao);
+            }, 1000)
+        })
+    </script>
+}
+<div class="all">
+    <div class="header">
+        <a href="/Home/Index">
+            <img src="/Content/images/logo.jpg" style="height:60px;margin-left:6px; margin-top:29px;" />
+        </a>
+        <span style=" margin-left:700px; font-size:12px;"></span>
+    </div>
+    <div class="title">
+        <img src="/Content/images/fankui/tu.jpg" style=" width:250px; height:40px; margin-left:345px; border-radius: 8px; margin-top:-10px; position:absolute;" />
+        <span style="font-size: 16px;font-weight: bold;color: #F1F1EF;padding-right: 15px; position:relative; left:365px;"> 青职二货街调研总结（PC版）</span>
+        <div class="mid">
+            <img src="/Content/images/fankui/ren.gif" width="610" height="427" style="margin-top:-145px; margin-left:-250px; " />
+            <div class="ganxie"><span style="margin: 0;padding: 0;font-size: 20px;font-weight: bold;text-align: center;color: #555;">感谢您的参与哦，您的支持是我们前进的最大动力！</span></div>
+        </div>
+        <div id="tishi"><span id="miao">5</span>秒钟后自动跳转到<a href="/Home/Index">青职二货街主页</a></div>
+    </div>
+</div>

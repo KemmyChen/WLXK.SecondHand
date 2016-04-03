@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "免费开店";
+    Layout = "~/Views/Shared/order/_LayoutSaleCenter.cshtml";
+}
+@section Header{
+    <link href="/Content/css/OrderCenter/OpenShop.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="/Scripts/MyAjaxForm.js"></script>
+    <script src="/Scripts/OrderCenter/Openshop.js"></script>
+}
+@{string status = ViewData["ShopStatus"].ToString();}
+
+@if (status == "0")
+{
+    if (ViewData["message"] != null)
+    {
+        <font style="margin: 0 auto; display: block;background: #FEC0C1;text-align:center;height:40px;line-height:40px;margin-bottom:20px;" color="red">@ViewData["message"]</font>
+    }
+    <h2>开店流程</h2>
+    <br />
+    <hr />
+    <form id="form1" action="/ordercenter/OpenShop" method="post" enctype="multipart/form-data">
+        <span id="userid" style="display:none;">@ViewData["userid"]</span>
+        <div>
+            <br />
+            <h3>1.邮箱确认</h3>
+            <div class="send">
+                <div>为了确认是您本人操作，请点击下方的链接，获取验证码。（验证码会通过邮件的形式发送至您的注册邮箱）</div>
+                <a id="getcode" href="javascript:void(0)">获取验证码</a>
+                <div class="codelist">
+                    <span style="color:#fd6440;">验证码：</span>
+                    <input id="txtcode" type="text" placeholder="请输入验证码" value="@ViewData["yanzhengma"]" /><span id="mseeage"></span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <br />
+            <h3>2.获取开店口号</h3>
+            <div class="send">
+                <div>请用微信扫描下方二维码，关注公众号，在公众号里回复“开店口号”，获取开店口号</div>
+                <div><img height="150" src="/Content/images/yanjiuyuanerweima.jpg" /></div>
+                <div class="codelist">
+                    <span style="color:red;">开店口号：</span>
+                    <input id="txtKouHao" type="text" placeholder="开店口号" value="" /><span id="kouhaomes"></span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <br />
+            <h3>3.完善个人资料</h3>
+            <div class="send">
+                <div>请填写真实资料,已便于进行审核。请先上传扫描件之后再进行创建店铺操作</div>
+                <div class="codelist">
+                    <span>真实姓名：</span>
+                    <input type="text" value="@ViewData["realname"]" name="RealName" id="RealName" />
+                </div>
+                <div class="codelist">
+                    <span>所在班级：</span>
+                    <input type="text" value="@ViewData["classname"]" name="CalssName" />
+                </div>
+                <div class="codelist">
+                    <span>身份证号码：</span>
+                    <input type="text" value="@ViewData["idcard"]" name="IdCard" id="IdCard" />
+                </div>
+                <div class="codelist">
+                    <span>学生证扫描件：</span>
+                    <input type="file" name="Address" />
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="IsCode" id="IsCode" value="" />
+        <input type="hidden" name="IsKouHao" id="IsKouHao" value="" />
+        <div style="height:40px;"></div>
+        <hr />
+        <div>
+            <input id="CreateShop" type="submit" name="name" value="创建店铺" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </form>
+}
+else if (status == "-1")
+{
+    <div style="background: #FEC0C1; border: 1px solid #FFF6BD; height: 50px;">您的店铺申请正在审核中，请稍候...</div>
+}
+else if (status == "1")
+{
+    <div style="background: #FEC0C1; border: 1px solid #FFF6BD; height:50px;">您的店铺已申请通过，请通过左边菜单进行操作吧</div>
+}

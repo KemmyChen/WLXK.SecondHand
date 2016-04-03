@@ -1,0 +1,1 @@
+﻿$(function () { $(".mynew").click(function () { var id = $(this).attr("ids"); $.post("/ordercenter/SetSee", { id: id }, function (data) { window.location.href = "/OrderCenter/MyNews" }) }) })

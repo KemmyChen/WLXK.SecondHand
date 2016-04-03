@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @RenderSection("Header")
+    <style type="text/css">
+        .caidan {
+            float: left;
+            width: 150px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body style="margin: 0px auto; min-width: 780px; max-width: 1380px;">
+    <div class="caidan">
+        <a href="/Admin/ListUser">用户管理</a>
+    </div>
+    <div class="caidan">
+        <a href="/Admin/ListGoods">商品管理</a>
+    </div>
+    <div class="caidan">
+        <a href="/Admin/ListDianpu">店铺管理</a>
+    </div>
+    @if (Session["adminlogin"] != null)
+    {
+        WLXK.SecondHand.Model.AdminUser user = Session["adminlogin"] as WLXK.SecondHand.Model.AdminUser;
+        if (user.Uid == "admin")
+        {
+            <div class="caidan">
+                <a href="/Admin/AdminUserList">管理员管理</a>
+            </div>
+            <div class="caidan">
+                <a href="/Admin/AdminPwd">密码管理</a>
+            </div>
+        }
+        else
+        {
+            <div class="caidan">
+                <a href="/Admin/AdminPwd">密码管理</a>
+            </div>
+        }
+    }
+
+    <div style="clear:both;">
+        @RenderBody()
+    </div>
+</body>
+</html>

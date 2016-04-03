@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WLXK.SecondHand.Model.ListShops>
+
+@{
+    ViewBag.Title = "店铺管理";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+@section Header{
+    <style type="text/css">
+        table tr td {
+            padding: 10px;
+            border-width: 1px;
+        }
+    </style>
+
+}
+
+
+<p>
+    @Html.ActionLink("新建店铺", "CreateDianPu")
+</p>
+<table border="1">
+    <tr>
+        <th>
+            店铺ID
+        </th>
+        <th>
+            申请时间
+        </th>
+        <th>
+            用户ID
+        </th>
+        <th>
+            真实姓名
+        </th>
+        <th>
+            身份证号码
+        </th>
+        <th>
+            班级
+        </th>
+        <th>
+            学生证照片
+        </th>
+        <th>操作</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserInfoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CalssName)
+            </td>
+            <td>
+                <img src="@item.CardAddress" alt="Alternate Text" height="60" width="60" />
+            </td>
+            <td>
+                @Html.ActionLink("删除店铺", "DeleteDianPu", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

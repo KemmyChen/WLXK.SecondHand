@@ -1,0 +1,100 @@
+﻿@model WLXK.SecondHand.Model.Goods
+
+@{
+    ViewBag.Title = "商品详情";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+@section Header{
+
+}
+<fieldset>
+    <legend>详情</legend>
+
+    <div class="display-label">
+        标题
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+       类型
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Type)
+    </div>
+
+    <div class="display-label">
+        宝贝卖点
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MaiDian)
+    </div>
+
+    <div class="display-label">
+       商品价格
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">
+        商品数量
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Count)
+    </div>
+
+    <div class="display-label">
+       商品来源
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LaiYuan)
+    </div>
+
+    <div class="display-label">
+        商品图片
+        
+    </div>
+    <div class="display-field">
+        <img src="@Model.BigImageAddress" alt="Alternate Text" />
+    </div>
+
+    <div class="display-label">
+        详细描述
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descript)
+    </div>
+
+    <div class="display-label">
+       发布时间
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SubTime)
+    </div>
+
+    <div class="display-label">
+        用户ID
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserInfoId)
+    </div>
+    <div class="display-label">
+        店铺ID
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ShopingId)
+    </div>
+
+    <div class="display-label">
+        浏览量
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SeeCount)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("编辑", "EditGoods", new { id = Model.Id }) |
+    @Html.ActionLink("回到商品管理", "ListGoods")
+</p>

@@ -1,0 +1,1 @@
+﻿$(function () { $("#suolvetu").css("display", "block"); $(".delete").click(function () { var id = $(this).attr("ids"); if (confirm("确认要从收藏夹中删除本条商品吗？")) { $.post("/OrderCenter/DeleteShop", { id: id }, function (data) { if (data == "ok") { window.location.href = '/OrderCenter/Shop?pageindex=' + $("#pageindex").val() } else { alert("data") } }) } }) })
